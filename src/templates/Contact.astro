@@ -1,0 +1,7 @@
+---
+import Layout from '../layouts/Layout.astro';
+const {lang}=Astro.props; const es=lang==='es';
+---
+<Layout lang={lang} page="contact" title={`${es?'Contacto':'Contact'} — Daniela Frías`}>
+<section class="folio-contact-page"><span class="eyebrow">06 / {es?'CONTACTO':'CONTACT'}</span><h1>{es?'¿Hacemos algo':'Shall we build'}<br/><em>{es?'que funcione?':'something good?'}</em></h1><p>{es?'Desarrollo front-end, implementación web, interfaces y experiencias digitales creativas. Si buscas a alguien que entienda tanto el diseño como el código, conversemos.':'Front-end development, web implementation, interfaces and creative digital experiences. If you need someone who understands both design and code, let’s talk.'}</p><a href="mailto:briefcase.df@gmail.com" class="folio-contact-mail">briefcase.df@gmail.com ↗</a><div class="folio-contact-links"><a href={`/${lang}/work/`}>{es?'Ver proyectos':'View work'} ↗</a><a href={`/${lang}/about/`}>{es?'Sobre mí':'About me'} ↗</a></div></section>
+</Layout>

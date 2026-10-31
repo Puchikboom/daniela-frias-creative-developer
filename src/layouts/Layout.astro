@@ -1,0 +1,18 @@
+---
+import '../styles/global.css';
+import {copy,portfolios} from '../data/content.js';
+const {lang='es',title='Daniela Frías — Developer Portfolio',page='home'}=Astro.props;
+const t=copy[lang];
+const counterpart=lang==='es'?'en':'es';
+const switchPath=Astro.url.pathname.replace(/^\/(es|en)(?=\/|$)/,`/${counterpart}`);
+const path=(suffix='')=>`/${lang}/${suffix}`;
+---
+<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#201a21"/><meta name="description" content={t.lead}/><title>{title}</title></head><body>
+<a class="skip" href="#main">{lang==='es'?'Saltar al contenido':'Skip to content'}</a>
+<header class="site-header"><a class="monogram" href={path()} aria-label="Daniela Frías, home">DF<span>/</span></a><nav aria-label={lang==='es'?'Navegación principal':'Main navigation'} class="desktop-nav"><a class:list={{active:page==='home'}} href={path()}>{t.nav.home}</a><a class:list={{active:page==='work'}} href={path('work/')} >{t.nav.work}</a><a class:list={{active:page==='playground'}} href={path('playground/')}>Playground</a><a class:list={{active:page==='about'}} href={path('about/')}>{t.nav.about}</a><a href="#archives">{t.nav.archive}</a><a href={path('contact/')}>{t.nav.contact}</a></nav><div class="header-actions"><a class="lang" href={switchPath} hreflang={counterpart} aria-label={lang==='es'?'Switch to English':'Cambiar a español'}>{lang==='es'?'EN':'ES'} <span aria-hidden="true">↗</span></a><button class="menu-btn" type="button" aria-controls="mobile-nav" aria-expanded="false">{lang==='es'?'MENÚ':'MENU'} <span>☰</span></button></div></header>
+<nav id="mobile-nav" aria-label={lang==='es'?'Navegación móvil':'Mobile navigation'} class="mobile-nav" hidden><a href={path()}>{t.nav.home}</a><a href={path('work/')}>{t.nav.work}</a><a href={path('playground/')}>Playground</a><a href={path('about/')}>{t.nav.about}</a><a href="#archives">{t.nav.archive}</a><a href={path('contact/')}>{t.nav.contact}</a></nav>
+<main id="main"><slot/></main>
+<section id="archives" class="archive-links"><div class="eyebrow">03 / {t.externalLabel.toUpperCase()}</div><h2>{t.legacy}</h2><p>{t.legacyBody}</p><div class="archive-grid">{portfolios.map(p=><a href={p.url} target="_blank" rel="noopener noreferrer" class="archive-link"><span class="eyebrow">{p.label}</span><strong>{p[lang]}</strong><span class="archive-arrow">↗</span></a>)}</div></section>
+<footer class="footer"><span class="eyebrow">DANIELA FRÍAS / © {new Date().getFullYear()}</span><p>{t.foot}</p><div class="footer-bottom"><span>{t.footSmall}</span><a href="mailto:briefcase.df@gmail.com">briefcase.df@gmail.com ↗</a><a href={path('work/')}>{t.nav.work} ↗</a></div></footer>
+<script>const btn=document.querySelector('.menu-btn');const menu=document.querySelector('#mobile-nav');btn?.addEventListener('click',()=>{const opening=btn.getAttribute('aria-expanded')!=='true';btn.setAttribute('aria-expanded',String(opening));menu.hidden=!opening;});menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.hidden=true;btn?.setAttribute('aria-expanded','false');}));const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('[data-reveal]').forEach(el=>observer.observe(el));</script>
+</body></html>

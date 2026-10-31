@@ -1,0 +1,7 @@
+---
+import ProjectCase from '../../../templates/ProjectCase.astro';
+import {showcase} from '../../../data/showcase.js';
+export function getStaticPaths(){return showcase.map(p=>({params:{slug:p.slug},props:{slug:p.slug}}))}
+const {slug}=Astro.props;
+---
+<ProjectCase lang="es" slug={slug}/>

@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+const {lang='es'}=Astro.props;
+const es=lang==='es';
+const t=es?{
+  intro:'Un laboratorio de interfaces que reaccionan, generan y se transforman. No son maquetas: mueve los controles, modifica las reglas y llévate el resultado.',
+  tag:'EXPERIMENTOS INTERACTIVOS / CREATIVE CODE',
+  hint:'DESPLÁZATE PARA EXPLORAR',
+  type:'TIPOGRAFÍA CINÉTICA',typeDesc:'Las letras responden al cursor y a variables de ritmo y amplitud. Un pequeño sistema tipográfico físico.',
+  word:'PALABRA',speed:'VELOCIDAD',energy:'ENERGÍA',reset:'Reiniciar',
+  field:'CAMPO DE FUERZAS',fieldDesc:'Partículas conectadas a un campo vectorial. Mueve el puntero por la escena y altera su turbulencia.',
+  density:'PARTÍCULAS',turb:'TURBULENCIA',mode:'MODO',flow:'Flujo',orbit:'Órbita',pause:'Pausar',resume:'Reanudar',
+  poster:'PÓSTER GENERATIVO',posterDesc:'Un pequeño motor de composición: combina tipografía, geometría y color y exporta un SVG editable.',
+  phrase:'TEXTO',palette:'PALETA',layout:'COMPOSICIÓN',generate:'Generar variación',download:'Exportar SVG',
+  motion:'MOTION SYSTEM',motionDesc:'Diseña el ritmo de una secuencia visual. Reproduce y recorre la animación con una línea de tiempo.',
+  duration:'DURACIÓN',stagger:'DESFASE',timeline:'TIEMPO',play:'Reproducir',stop:'Detener',
+  stack:'QUÉ DEMUESTRA',ending:'El código también puede tener una voz visual.',back:'Explorar proyectos',
+  reduced:'Las animaciones se reducen según la preferencia de tu sistema.',
+}:{intro:'A laboratory for interfaces that respond, generate and transform. These are not static mockups: move the controls, change the rules and take the result with you.',tag:'INTERACTIVE EXPERIMENTS / CREATIVE CODE',hint:'SCROLL TO EXPLORE',type:'KINETIC TYPOGRAPHY',typeDesc:'Letters react to the cursor and to rhythm and amplitude controls. A compact physical typography system.',word:'WORD',speed:'SPEED',energy:'ENERGY',reset:'Reset',field:'FORCE FIELD',fieldDesc:'Particles follow a vector field. Move your pointer across the scene and tune the turbulence.',density:'PARTICLES',turb:'TURBULENCE',mode:'MODE',flow:'Flow',orbit:'Orbit',pause:'Pause',resume:'Resume',poster:'GENERATIVE POSTER',posterDesc:'A small composition engine: combine typography, geometry and color, then export an editable SVG.',phrase:'TEXT',palette:'PALETTE',layout:'COMPOSITION',generate:'New variation',download:'Export SVG',motion:'MOTION SYSTEM',motionDesc:'Design the timing of a visual sequence. Play it and scrub the animation timeline.',duration:'DURATION',stagger:'STAGGER',timeline:'TIMELINE',play:'Play',stop:'Stop',stack:'UNDER THE HOOD',ending:'Code can have a visual voice, too.',back:'Explore projects',reduced:'Animations are reduced according to your system preferences.'};
+---
+<Layout lang={lang} page="playground" title={`Playground — Daniela Frías`}>
+<link rel="stylesheet" href="/playground.css"/>
+<div class="pg" data-lang={lang}>
+  <section class="pg-hero">
+    <div class="pg-hero-top"><span>DF / R&D LAB</span><span>{t.tag}</span><span>2026 — LAB V2.1 / 4 EXPERIMENTS</span></div>
+    <h1 aria-label="Playground">PLAY<span class="pg-title-outline">GROUND</span><span class="pg-title-dot">.</span></h1>
+    <div class="pg-hero-bottom"><p>{t.intro}</p><span class="pg-side-note">↓ {t.hint}</span></div>
+    <div class="pg-track" aria-hidden="true"><div>CREATIVE CODE ✳ DESIGN SYSTEMS ✳ MOTION ENGINEERING ✳ CREATIVE CODE ✳ DESIGN SYSTEMS ✳ MOTION ENGINEERING ✳</div></div>
+  </section>
+
+  <section class="pg-experiment pg-kinetic" id="kinetic" aria-labelledby="kinetic-h">
+    <div class="pg-exp-head"><span>01 / TYPOGRAPHY ENGINE</span><span>HTML · CSS · JAVASCRIPT</span></div>
+    <div class="pg-exp-intro"><h2 id="kinetic-h">{t.type}</h2><p>{t.typeDesc}</p></div>
+    <div class="pg-kinetic-stage" id="type-stage" tabindex="0" aria-label={es?'Tipografía interactiva':'Interactive typography'}><div id="kinetic-word" aria-hidden="true">MOTION</div><div class="pg-stage-cross pg-cross-a">+</div><div class="pg-stage-cross pg-cross-b">+</div><span class="pg-stage-label">POINTER / REACTIVE TYPE</span></div>
+    <div class="pg-controls">
+      <label class="pg-control"><span>{t.word}</span><input id="type-word" maxlength="10" value="MOTION" aria-label={t.word}/></label>
+      <label class="pg-control"><span>{t.speed} <output id="type-speed-out">45</output></span><input id="type-speed" type="range" min="0" max="100" value="45"/></label>
+      <label class="pg-control"><span>{t.energy} <output id="type-energy-out">60</output></span><input id="type-energy" type="range" min="0" max="100" value="60"/></label>
+      <button class="pg-action pg-small" id="type-reset">↺ {t.reset}</button>
+    </div>
+    <div class="pg-exp-foot"><span>{t.stack}</span><p>DOM transforms · spring dynamics · requestAnimationFrame · pointer input</p></div>
+  </section>
+
+  <section class="pg-experiment pg-field" id="force-field" aria-labelledby="field-h">
+    <div class="pg-exp-head"><span>02 / GENERATIVE SYSTEM</span><span>CANVAS 2D · VECTOR FIELD</span></div>
+    <div class="pg-exp-intro"><h2 id="field-h">{t.field}</h2><p>{t.fieldDesc}</p></div>
+    <div class="pg-field-stage"><canvas id="flow-canvas" aria-label={es?'Visualización de partículas en movimiento':'Animated particle visualization'}></canvas><div class="pg-field-hud"><span>FIELD / <span id="field-mode-label">FLOW</span></span><span id="field-fps">LIVE GENERATION</span></div></div>
+    <div class="pg-controls">
+      <label class="pg-control"><span>{t.density} <output id="density-out">240</output></span><input id="density" type="range" min="60" max="500" step="20" value="240"/></label>
+      <label class="pg-control"><span>{t.turb} <output id="turb-out">48</output></span><input id="turb" type="range" min="0" max="100" value="48"/></label>
+      <label class="pg-control"><span>{t.mode}</span><select id="field-mode"><option value="flow">{t.flow}</option><option value="orbit">{t.orbit}</option></select></label>
+      <button class="pg-action pg-small" id="field-toggle" data-pause={t.pause} data-resume={t.resume}>{t.pause} Ⅱ</button>
+    </div>
+    <div class="pg-exp-foot"><span>{t.stack}</span><p>High-DPI canvas · vector mathematics · pointer attraction · animation loop</p></div>
+  </section>
+
+  <section class="pg-experiment pg-poster" id="poster-studio" aria-labelledby="poster-h">
+    <div class="pg-exp-head"><span>03 / DESIGN TOOL</span><span>GENERATIVE SVG · EXPORT</span></div>
+    <div class="pg-exp-intro"><h2 id="poster-h">{t.poster}</h2><p>{t.posterDesc}</p></div>
+    <div class="pg-poster-layout"><div class="pg-poster-frame"><svg id="poster-art" viewBox="0 0 600 750" role="img" aria-label={es?'Vista previa del póster generativo':'Generative poster preview'}"></svg></div><div class="pg-poster-sidebar">
+      <div class="pg-side-index">[ LIVE EDITOR / V 1.0 ]</div>
+      <label class="pg-control"><span>{t.phrase}</span><input id="poster-text" value="MAKE IT MOVE" maxlength="28"/></label>
+      <label class="pg-control"><span>{t.palette}</span><select id="poster-palette"><option value="acid">ACID / INK</option><option value="berry">BERRY / PAPER</option><option value="mono">BLACK / WHITE</option><option value="plum">PLUM / LILAC</option></select></label>
+      <label class="pg-control"><span>{t.layout}</span><select id="poster-layout"><option value="diagonal">DIAGONAL</option><option value="stack">STACKED</option><option value="orbit">ORBITAL</option></select></label>
+      <button class="pg-action" id="poster-random">↻ {t.generate}</button><button class="pg-action pg-action-bright" id="poster-export">↓ {t.download}</button>
+      <p class="pg-hint">SVG / 600 × 750 / VECTOR OUTPUT</p>
+    </div></div>
+    <div class="pg-exp-foot"><span>{t.stack}</span><p>SVG DOM · seeded geometry · state-driven rendering · file export</p></div>
+  </section>
+
+  <section class="pg-experiment pg-motion" id="motion-system" aria-labelledby="motion-h">
+    <div class="pg-exp-head"><span>04 / ANIMATION DIRECTOR</span><span>WEB ANIMATIONS API · TIMELINE</span></div>
+    <div class="pg-exp-intro"><h2 id="motion-h">{t.motion}</h2><p>{t.motionDesc}</p></div>
+    <div class="pg-motion-stage" id="motion-stage"><span class="pg-m-stageid">SCENE / 004</span><div class="pg-motion-set"><span class="pg-motion-object" data-i="0">D</span><span class="pg-motion-object" data-i="1">E</span><span class="pg-motion-object" data-i="2">S</span><span class="pg-motion-object" data-i="3">I</span><span class="pg-motion-object" data-i="4">G</span><span class="pg-motion-object" data-i="5">N</span></div><span class="pg-m-caption">KEYFRAMES / STAGGER / EASING</span></div>
+    <div class="pg-controls pg-motion-controls"><label class="pg-control"><span>{t.duration} <output id="duration-out">1500ms</output></span><input id="motion-duration" type="range" min="600" max="3000" value="1500" step="100"/></label><label class="pg-control"><span>{t.stagger} <output id="stagger-out">110ms</output></span><input id="motion-stagger" type="range" min="0" max="300" value="110" step="10"/></label><label class="pg-control pg-scrubber"><span>{t.timeline} <output id="timeline-out">0%</output></span><input id="motion-scrub" type="range" min="0" max="100" value="0" step="1"/></label><button class="pg-action pg-action-bright" id="motion-play">▶ {t.play}</button><button class="pg-action pg-small" id="motion-stop">■ {t.stop}</button></div>
+    <div class="pg-exp-foot"><span>{t.stack}</span><p>WAAPI · independent keyframes · easing curves · time scrubbing</p></div>
+  </section>
+  <section class="pg-outro"><span>DF / END OF EXPERIMENTS</span><h2>{t.ending}</h2><p>{t.reduced}</p><a href={`/${lang}/work/`} class="pg-action pg-action-bright">{t.back} ↗</a></section>
+</div>
+<script src="/playground.js" defer></script>
+</Layout>

@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {showcase} from '../data/showcase.js';
+const {lang,slug}=Astro.props;
+const project=showcase.find(p=>p.slug===slug);
+const i=showcase.indexOf(project);
+const next=showcase[(i+1)%showcase.length];
+const es=lang==='es';
+---
+<Layout lang={lang} page="work" title={`${project.name} — Daniela Frías`}>
+<article class="dev-case" style={`--case-accent:${project.theme}`}>
+ <div class="dev-case-top"><a href={`/${lang}/work/`}>← {es?'Todos los proyectos':'All projects'}</a><span>PROJECT {String(i+1).padStart(2,'0')} / 06</span></div>
+ <header class="dev-case-header"><div><span class="eyebrow">{project.group}</span><h1>{project.name}<span class="accent">.</span></h1><p>{project[lang]}</p></div><div class="case-tech"><strong>{es?'TECNOLOGÍA CONFIRMADA':'CONFIRMED TECHNOLOGY'}</strong><p>{project.confirmed.length ? project.confirmed.join(' / ') : (es?'Pendiente de confirmar':'To be confirmed')}</p><strong>{es?'STACK PROPUESTO, NO VERIFICADO':'SUGGESTED, NOT VERIFIED'}</strong><p>{project.suggested.join(' / ')}</p></div></header>
+ <figure class="case-cover"><img src={project.images[0]} alt={`${project.name} — ${project.group}`} loading="eager" fetchpriority="high"/></figure>
+ <div class="case-intro"><span class="eyebrow">01 / {es?'SISTEMA VISUAL':'VISUAL SYSTEM'}</span><h2>{es?'Diseño y experiencia en detalle.':'Design and experience in detail.'}</h2><p>{es?'Una exploración visual de las pantallas, componentes y adaptaciones disponibles. Las imágenes provienen del material original del proyecto.':'A visual exploration of the available screens, components and adaptations. Images come from the original project materials.'}</p></div>
+ <div class="case-gallery">{project.images.slice(1).map((img,j)=><figure class:list={{wide:j%4===1}}><img src={img} alt={`${project.name} — ${es?'vista':'view'} ${j+2}`} loading="lazy"/><figcaption>{String(j+2).padStart(2,'0')} / {project.name}</figcaption></figure>)}</div>
+ {project.videos.length>0&&<section class="case-videos"><span class="eyebrow">02 / {es?'MOVIMIENTO':'MOTION'}</span><h2>{es?'El proyecto en movimiento.':'The project in motion.'}</h2><div class="case-video-grid">{project.videos.map(v=><video controls playsinline preload="metadata" aria-label={`${project.name} video`}><source src={v} type="video/mp4"/></video>)}</div></section>}
+ <section class="case-notes"><span class="eyebrow">03 / {es?'DESGLOSE TÉCNICO':'DEVELOPMENT BREAKDOWN'}</span><h2>{es?'Qué se construyó y con qué.':'What was built and how.'}</h2><p>{es?'La tecnología indicada como confirmada procede de la información facilitada por la autora. Las herramientas propuestas son una recomendación de arquitectura, no una afirmación sobre la implementación real. El código, las interacciones funcionales y los resultados se documentarán únicamente tras verificarlos.':'Confirmed technologies reflect the creator’s own information. Suggested tools are architecture recommendations, not claims about the actual implementation. Code, functional interactions and outcomes will only be documented once verified.'}</p><div class="case-stack"><div><span>{es?'Confirmado':'Confirmed'}</span><strong>{project.confirmed.join(' / ')||'—'}</strong></div><div><span>{es?'Propuesta técnica':'Suggested architecture'}</span><strong>{project.suggested.join(' / ')}</strong></div></div></section>
+ <a class="case-next" href={`/${lang}/work/${next.slug}/`}><span>{es?'SIGUIENTE PROYECTO':'NEXT PROJECT'} ↗</span><strong>{next.name}</strong></a>
+</article>
+</Layout>
