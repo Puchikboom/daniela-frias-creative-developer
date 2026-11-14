@@ -6,6 +6,7 @@ deletes its temporary storage after the tests. No employer data involved.
 """
 import json
 import os
+import tempfile
 from pathlib import Path
 import socket
 import subprocess
@@ -14,17 +15,13 @@ import unittest
 from urllib import error, request
 
 API_DIR = Path(__file__).resolve().parents[1] / "api"
-DB_FILE = API_DIR / "projects.json"
 
 
 class PulseApiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        if DB_FILE.exists():
-            raise RuntimeError(
-                f"Refusing to overwrite existing data: {DB_FILE}. "
-                "Use a clean checkout for the smoke test."
-            )
+        cls.tmp = tempfile.TemporaryDirectory(prefix="pulse-test-")
+        cls.db_path = Path(cls.tmp.name) / "test.sqlite"
         with socket.socket() as s:
             s.bind(("127.0.0.1", 0))
             port = s.getsockname()[1]
@@ -34,6 +31,7 @@ class PulseApiTests(unittest.TestCase):
             cwd=API_DIR,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.PIPE,
+            env={**os.environ, "PULSE_DB_PATH": str(cls.db_path)},
         )
         for _ in range(50):
             try:
@@ -56,7 +54,7 @@ class PulseApiTests(unittest.TestCase):
             except subprocess.TimeoutExpired:
                 cls.proc.kill()
                 cls.proc.communicate()
-        DB_FILE.unlink(missing_ok=True)
+        cls.tmp.cleanup()
 
     @classmethod
     def call(cls, method, path, data=None):
@@ -77,6 +75,7 @@ class PulseApiTests(unittest.TestCase):
         code, health = self.call("GET", "/api/health")
         self.assertEqual(code, 200)
         self.assertTrue(health["ok"])
+        self.assertEqual(health["storage"], "sqlite")
 
         code, data = self.call("GET", "/api/projects")
         self.assertEqual(code, 200)
@@ -120,6 +119,7 @@ class PulseApiTests(unittest.TestCase):
         code, listed = self.call("GET", "/api/projects")
         self.assertEqual(code, 200)
         self.assertFalse(any(p["id"] == identifier for p in listed["data"]))
+        self.assertTrue(self.db_path.exists())
 
 
 if __name__ == "__main__":

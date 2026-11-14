@@ -13,7 +13,22 @@ An **original independent portfolio exercise**, made for Daniela Frías. The bus
 - CRUD (create/read/update/delete) calls against a PHP 8 API
 - Server-side input validation and synthetic seed data
 - Browser fetch loading/error state, accessible form labels and keyboard focus styles
-- Local JSON file storage with file locking (for demonstration only)
+- SQLite database via PDO and prepared statements (local API only)
+
+## Safe static browser demo
+
+A **separate** build uses only in-browser fictional data. No PHP endpoint is contacted.
+CRUD changes persist in the browser's localStorage and can be cleared with `Reset demo data`.
+This is the only version suitable for publishing as a static public demo.
+
+```bash
+cd labs/pulse-studio
+npm install
+npm run build:demo
+```
+
+Publish the **`dist/` output** to static hosting. No PHP files or writable database are deployed.
+The regular `npm run build` continues to use the local PHP API.
 
 ## Run locally
 
@@ -30,7 +45,7 @@ npm install
 npm run dev
 ```
 
-Visit http://127.0.0.1:5173 . The Vite proxy forwards `/api` requests to the PHP server.
+Visit http://127.0.0.1:5173 . The Vite proxy forwards `/api` requests to the PHP server. The API requires the PHP `pdo_sqlite` extension and writes to `api/pulse.sqlite` by default.
 
 ## Automated API integration tests
 
@@ -53,16 +68,16 @@ curl http://127.0.0.1:8000/api/projects
 npm run build
 ```
 
-**Security:** no authentication, authorization, SQL persistence, automated API tests, session protection, or abuse protection yet. **Never publish this PHP API with write access.** For a public demo, build read-only demo mode or implement secure auth + proper database persistence and hosting before exposing writes.
+**Security:** no authentication, authorization, session protection, abuse protection, or browser-level automated tests yet. PHP/SQLite SQL persistence and API CRUD integration tests are included, but are not sufficient for public writable hosting. **Never publish this PHP API with write access.** For a public demo, build read-only demo mode or implement secure auth + proper database persistence and hosting before exposing writes.
 
 ## Engineering roadmap
 
-1. Run full frontend build, test in a browser at desktop and mobile widths, fix discovered errors.
+1. Run full browser-level functional and accessibility tests at desktop and mobile widths.
 2. Add tests (React Testing Library/Vitest; PHP endpoint integration tests).
-3. Replace JSON persistence with SQLite/PostgreSQL, migrations, repository layer and safe prepared statements.
+3. Introduce versioned SQL migrations and a repository layer. SQLite and parameterized statements are implemented in the local API.
 4. Build a protected sign-in flow, authorization, rate limiting, CSRF protection where cookie auth is used.
 5. Add pagination and server-side filters, retry and empty/error states.
-6. Deploy frontend and secured backend on hosting that supports PHP (a static Cloudflare Pages project alone cannot execute PHP).
+6. Publish the isolated static browser-only demo. Only consider PHP hosting after full authentication, authorization, and security work; a static Cloudflare Pages project cannot execute PHP.
 7. Publish a bilingual case study only when the demo, repository links, screenshots, technical decisions and test evidence are verified.
 
 ## CV honesty

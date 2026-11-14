@@ -1,3 +1,6 @@
 projects.json
 *.sqlite
 *.sqlite3
+
+pulse.sqlite
+pulse.sqlite-*

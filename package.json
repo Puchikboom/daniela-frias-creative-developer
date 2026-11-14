@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": {"dev": "astro dev --host 127.0.0.1", "build": "astro build", "preview": "astro preview"},
-  "dependencies": {"astro": "^5.16.0"}
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "node scripts/build-site.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.16.0"
+  }
 }
