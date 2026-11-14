@@ -1,13 +1,17 @@
 ---
 import '../styles/global.css';
 import {copy,portfolios} from '../data/content.js';
-const {lang='es',title='Daniela Frías — Developer Portfolio',page='home'}=Astro.props;
+const {lang='es',title='Daniela Frías — Developer Portfolio',page='home',description}=Astro.props;
 const t=copy[lang];
 const counterpart=lang==='es'?'en':'es';
 const switchPath=Astro.url.pathname.replace(/^\/(es|en)(?=\/|$)/,`/${counterpart}`);
 const path=(suffix='')=>`/${lang}/${suffix}`;
+const site='https://daniela-frias-creative-developer.pages.dev';
+const canonical=new URL(Astro.url.pathname,site).href;
+const alternate=new URL(switchPath,site).href;
+const summary=description ?? (lang==='es'?'Daniela Frías: desarrolladora front-end con experiencia profesional en React, TypeScript, JavaScript, PHP y WordPress. Explora proyectos, aplicaciones interactivas y estudios de ingeniería.':'Daniela Frías: front-end developer experienced in React, TypeScript, JavaScript, PHP and WordPress. Explore interactive applications, engineering projects and creative development.');
 ---
-<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#201a21"/><meta name="description" content={t.lead}/><title>{title}</title></head><body>
+<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#201a21"/><meta name="description" content={summary}/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href={canonical}/><link rel="alternate" hreflang={lang} href={canonical}/><link rel="alternate" hreflang={counterpart} href={alternate}/><meta property="og:type" content="website"/><meta property="og:site_name" content="Daniela Frías — Creative Developer"/><meta property="og:title" content={title}/><meta property="og:description" content={summary}/><meta property="og:url" content={canonical}/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={summary}/><title>{title}</title></head><body>
 <a class="skip" href="#main">{lang==='es'?'Saltar al contenido':'Skip to content'}</a>
 <header class="site-header"><a class="monogram" href={path()} aria-label="DF — Daniela Frías, home">DF<span>/</span></a><nav aria-label={lang==='es'?'Navegación principal':'Main navigation'} class="desktop-nav"><a class:list={{active:page==='home'}} href={path()}>{t.nav.home}</a><a class:list={{active:page==='work'}} href={path('work/')} >{t.nav.work}</a><a class:list={{active:page==='playground'}} href={path('playground/')}>Playground</a><a class:list={{active:page==='about'}} href={path('about/')}>{t.nav.about}</a><a href="#archives">{t.nav.archive}</a><a href={path('contact/')}>{t.nav.contact}</a></nav><div class="header-actions"><a class="lang" href={switchPath} hreflang={counterpart} aria-label={lang==='es'?'EN — Switch to English':'ES — Cambiar a español'}>{lang==='es'?'EN':'ES'} <span aria-hidden="true">↗</span></a><button class="menu-btn" type="button" aria-controls="mobile-nav" aria-expanded="false">{lang==='es'?'MENÚ':'MENU'} <span>☰</span></button></div></header>
 <nav id="mobile-nav" aria-label={lang==='es'?'Navegación móvil':'Mobile navigation'} class="mobile-nav" hidden><a href={path()}>{t.nav.home}</a><a href={path('work/')}>{t.nav.work}</a><a href={path('playground/')}>Playground</a><a href={path('about/')}>{t.nav.about}</a><a href="#archives">{t.nav.archive}</a><a href={path('contact/')}>{t.nav.contact}</a></nav>

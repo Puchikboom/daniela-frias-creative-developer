@@ -2,14 +2,14 @@
 
 An **original independent portfolio exercise**, made for Daniela Frías. The business, clients, budgets, and records are fictional. No content, code, client data, assets, internal logic, or designs from any employer have been used.
 
-**Status:** first engineering prototype. It has not yet passed a browser-level production build and is **not a public deployment**. Do not claim it as professional client work.
+**Status:** independent engineering lab with a browser-only interactive demo at https://daniela-frias-creative-developer.pages.dev/pulse-studio/ . React/TypeScript builds, PHP/SQLite integration tests and desktop/mobile Chromium checks have passed. This is **not** production client work or a production-ready authenticated backend.
 
 ## Stack and what is implemented
 
 - React 19 and TypeScript with typed data model
 - Vite frontend with responsive, original editorial design
-- Live project filtering and search
-- Dashboard metrics derived from records
+- Search, category and status filters, sorting, interactive analytics and CSV export
+- TypeScript selector functions and metrics derived from filtered records
 - CRUD (create/read/update/delete) calls against a PHP 8 API
 - Server-side input validation and synthetic seed data
 - Browser fetch loading/error state, accessible form labels and keyboard focus styles
@@ -49,7 +49,7 @@ Visit http://127.0.0.1:5173 . The Vite proxy forwards `/api` requests to the PHP
 
 ## Automated API integration tests
 
-The engineering workflow runs an actual PHP built-in server and exercises the local REST API with synthetic data. The test checks health, listing, create, update, delete, invalid progress/date, and missing-record responses. It refuses to overwrite an existing local `api/projects.json`.
+The engineering workflow runs an actual PHP built-in server and exercises the local REST API with synthetic data. The test checks health, listing, create, update, delete, invalid progress/date, and missing-record responses. It uses a disposable SQLite database, protecting existing local data.
 
 To run against a clean checkout with PHP and Python installed:
 
@@ -68,17 +68,17 @@ curl http://127.0.0.1:8000/api/projects
 npm run build
 ```
 
-**Security:** no authentication, authorization, session protection, abuse protection, or browser-level automated tests yet. PHP/SQLite SQL persistence and API CRUD integration tests are included, but are not sufficient for public writable hosting. **Never publish this PHP API with write access.** For a public demo, build read-only demo mode or implement secure auth + proper database persistence and hosting before exposing writes.
+**Security:** the local PHP API has no production-ready authentication, authorization or abuse protection. Automated browser checks test the public **browser-only** demo. PHP/SQLite SQL persistence and API CRUD integration tests are included, but are not sufficient for public writable hosting. **Never publish this PHP API with write access.** The public static demo uses fictitious browser-local records and never exposes a writable PHP endpoint.
 
 ## Engineering roadmap
 
-1. Run full browser-level functional and accessibility tests at desktop and mobile widths.
+1. Extend passing Chromium automated browser/accessibility checks with manual assistive-technology and cross-browser review.
 2. Add tests (React Testing Library/Vitest; PHP endpoint integration tests).
 3. Introduce versioned SQL migrations and a repository layer. SQLite and parameterized statements are implemented in the local API.
 4. Build a protected sign-in flow, authorization, rate limiting, CSRF protection where cookie auth is used.
 5. Add pagination and server-side filters, retry and empty/error states.
-6. Publish the isolated static browser-only demo. Only consider PHP hosting after full authentication, authorization, and security work; a static Cloudflare Pages project cannot execute PHP.
-7. Publish a bilingual case study only when the demo, repository links, screenshots, technical decisions and test evidence are verified.
+6. Verify static demo production deployment; only consider PHP hosting after security engineering. Cloudflare Pages cannot execute PHP.
+7. Enrich the existing engineering case with authentic rendered screenshots and verified performance metrics.
 
 ## CV honesty
 
@@ -90,4 +90,24 @@ Until verified, label this as **Independent engineering project (in progress)**.
 - **ThreadLab Interactive:** build a real product configurator with Astro + TypeScript + React, accessible controls and interaction tests.
 - **Application engineering:** Next.js, API integration, authentication, database, testing, accessibility and performance.
 
-The live website on `main` is intentionally unchanged. This project lives only on the experimental branch.
+The public static demo is included in the main Astro build; the PHP/SQLite backend remains local only.
+
+## Architecture and engineering decisions (November 2026)
+
+```text
+PUBLIC (STATIC)
+Cloudflare Pages → React + TypeScript → fictional localStorage CRUD
+
+LOCAL ENGINEERING (NOT PUBLIC)
+React + TypeScript → REST routes → PHP 8 → PDO SQLite (parameterized SQL)
+
+GITHUB ACTIONS
+TypeScript compilation / PHP syntax / disposable SQLite HTTP integration
+Chromium desktop + mobile user flows / automated axe accessibility checks
+```
+
+**Why this architecture?** A browser-only demo allows recruiters to experience realistic interface interactions without deploying an unauthenticated public write API. The backend is developed and tested separately. No sensitive data is used.
+
+**Inspect the evidence:** [CI runs](https://github.com/Puchikboom/daniela-frias-creative-developer/actions), [browser tests](https://github.com/Puchikboom/daniela-frias-creative-developer/blob/main/tests/pulse-studio.browser.mjs), [API tests](./tests/test_api.py), and [typed analytics](./src/analytics.ts).
+
+**Remaining:** manual accessibility review, measured Core Web Vitals from real visits, secure production backend access controls and deeper component tests.

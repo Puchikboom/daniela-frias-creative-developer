@@ -30,3 +30,4 @@ cpSync(resolve(reactLab,'dist'),reactDestination,{recursive:true});
 if(!existsSync(resolve(reactDestination,'index.html')))throw Error('React API Studio build missing');
 // Only compiled static assets are deployed. No backend credentials or private data.
 run('npm',['exec','--','astro','build'],root);
+run('node',['scripts/generate-sitemap.mjs'],root);
