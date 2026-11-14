@@ -24,12 +24,18 @@ try{
   const page=await context.newPage();
   const errors=[];
   page.on('pageerror',err=>errors.push(err.message));
+  page.on('console',msg=>{if(msg.type()==='error')errors.push('console: '+msg.text())});
+  page.on('requestfailed',req=>errors.push('request: '+req.url()+' '+req.failure()?.errorText));
   await page.goto(base+'/'+locale+'/threadlab/',{waitUntil:'networkidle'});
   check(await page.locator('#tl-garment').count()===1,locale+': visual SVG exists');
   check(await page.locator('#tl-material').innerText().then(s=>s.length>0),locale+': material label available');
   const original=await page.locator('#tl-body').getAttribute('d');
   await page.locator('label:has(input[name="fabric"][value="linen"])').click();
-  check((await page.locator('#tl-material').innerText()).includes(locale==='es'?'Lino':'Linen'),locale+': fabric selection updates text');
+  const materialAfter=await page.locator('#tl-material').innerText();
+  if(!materialAfter.includes(locale==='es'?'Lino':'Linen')){
+    console.error('Browser debug',JSON.stringify({locale,materialAfter,errors,scripts:await page.locator('script[src]').evaluateAll(nodes=>nodes.map(x=>x.getAttribute('src'))),checked:await page.locator('input[name="fabric"]:checked').inputValue()}));
+  }
+  check(materialAfter.includes(locale==='es'?'Lino':'Linen'),locale+': fabric selection updates text');
   await page.locator('label:has(input[name="color"][value="cobalt"])').click();
   check(await page.locator('#tl-body').getAttribute('fill')==='#5879D1',locale+': color updates SVG');
   await page.locator('label:has(input[name="fit"][value="oversized"])').click();
