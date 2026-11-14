@@ -32,6 +32,18 @@ npm run dev
 
 Visit http://127.0.0.1:5173 . The Vite proxy forwards `/api` requests to the PHP server.
 
+## Automated API integration tests
+
+The engineering workflow runs an actual PHP built-in server and exercises the local REST API with synthetic data. The test checks health, listing, create, update, delete, invalid progress/date, and missing-record responses. It refuses to overwrite an existing local `api/projects.json`.
+
+To run against a clean checkout with PHP and Python installed:
+
+```bash
+python3 -m unittest discover -s labs/pulse-studio/tests -p 'test_*.py' -v
+```
+
+This does **not** replace frontend browser tests, authentication testing, or a production security review.
+
 ## Verification commands
 
 ```bash
