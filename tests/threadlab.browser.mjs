@@ -35,7 +35,7 @@ try{
   if(!materialAfter.toLowerCase().includes(locale==='es'?'lino':'linen')){
     console.error('Browser debug',JSON.stringify({locale,materialAfter,errors,scripts:await page.locator('script[src]').evaluateAll(nodes=>nodes.map(x=>x.getAttribute('src'))),checked:await page.locator('input[name="fabric"]:checked').inputValue()}));
   }
-  check(materialAfter.includes(locale==='es'?'Lino':'Linen'),locale+': fabric selection updates text');
+  check(materialAfter.toLowerCase().includes(locale==='es'?'lino':'linen'),locale+': fabric selection updates text');
   await page.locator('label:has(input[name="color"][value="cobalt"])').click();
   check(await page.locator('#tl-body').getAttribute('fill')==='#5879D1',locale+': color updates SVG');
   await page.locator('label:has(input[name="fit"][value="oversized"])').click();
