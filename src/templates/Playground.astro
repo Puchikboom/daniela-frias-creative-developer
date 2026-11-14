@@ -101,7 +101,7 @@ const t=es?{
         </div>
         <div class="dl-vis"><div class="dl-vis-head"><strong>{t.dataChart}</strong><span id="dl-results" aria-live="polite">12</span></div><div id="dl-chart" role="img" aria-label={t.dataChart}></div></div>
         <div class="dl-table-head"><strong>{t.dataRows}</strong><span>API-LIKE STATE / CLIENT SIDE</span></div>
-        <div class="dl-table-scroll"><table><thead><tr><th>{es?'Proyecto':'Project'}</th><th>{es?'Cliente':'Client'}</th><th>{t.dataType}</th><th>{t.dataStatus}</th><th>{t.dataTime}</th><th>{t.dataAvg}</th></tr></thead><tbody id="dl-rows"></tbody></table><p id="dl-empty" hidden></p></div>
+        <div class="dl-table-scroll" tabindex="0" role="region" aria-label={es?"Tabla de resultados desplazable":"Scrollable results table"}><table><thead><tr><th>{es?'Proyecto':'Project'}</th><th>{es?'Cliente':'Client'}</th><th>{t.dataType}</th><th>{t.dataStatus}</th><th>{t.dataTime}</th><th>{t.dataAvg}</th></tr></thead><tbody id="dl-rows"></tbody></table><p id="dl-empty" hidden></p></div>
         <div class="dl-pagination"><button type="button" id="dl-prev">{t.dataPrev}</button><span id="dl-page">1 / 2</span><button type="button" id="dl-next">{t.dataNext}</button></div>
         <p id="dl-feedback" class="dl-feedback" role="status" aria-live="polite"></p>
       </div>
