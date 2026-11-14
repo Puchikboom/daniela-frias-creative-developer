@@ -54,6 +54,8 @@ jobs:
         run: node tests/technical-expertise.browser.mjs
       - name: Test Pulse Studio 2.0 analytics and accessibility
         run: node tests/pulse-studio.browser.mjs
+      - name: Audit portfolio routes, contact accessibility and capture mobile tablet desktop
+        run: node tests/portfolio-quality.browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
