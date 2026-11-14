@@ -16,8 +16,6 @@ jobs:
           cache: npm
       - name: Install main dependencies
         run: npm ci --no-audit --no-fund
-      - name: Inspect ThreadLab Astro component compilation
-        run: node scripts/diagnose-threadlab.mjs
       - name: Build integrated website with safe demo
         run: npm run build
       - name: Ensure PHP and SQLite never ship
