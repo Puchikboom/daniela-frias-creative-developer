@@ -125,9 +125,9 @@ final class Forma_Studio_Inquiry_Lab {
             ? sanitize_textarea_field(wp_unslash($_POST['message'])) : '';
 
         if (
-            mb_strlen($name) < 2 || mb_strlen($name) > 100 ||
+            strlen($name) < 2 || strlen($name) > 100 ||
             !is_email($email) || strlen($email) > 190 ||
-            mb_strlen($message) < 10 || mb_strlen($message) > 2000
+            strlen($message) < 10 || strlen($message) > 2000
         ) {
             self::redirect('invalid');
         }
