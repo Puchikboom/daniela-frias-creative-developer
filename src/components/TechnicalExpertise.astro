@@ -1,0 +1,79 @@
+---
+/**
+ * Editorial competency-to-evidence index.
+ * Professional experience and independent demos are explicitly distinguished.
+ * All links target already-existing source files or published routes.
+ */
+const {lang='en',placement='home'}=Astro.props;
+const es=lang==='es';
+const headingId=`expertise-${placement}`;
+const groups=[
+ {n:'01',name:'React / TypeScript',kind:es?'FRONT-END ENGINEERING':'FRONT-END ENGINEERING',desc:es?'Componentes, estado asíncrono, consumo de datos y experiencia de producto.':'Components, asynchronous state, data fetching and product experience.',experience:'Techno Global',links:[
+  {name:'React API Studio',href:`/react-api-studio/?lang=${lang}`,note:es?'Demo interactiva':'Interactive demo'},
+  {name:'Pulse Studio',href:'/pulse-studio/',note:es?'Dashboard funcional':'Functional dashboard'}]},
+ {n:'02',name:'PHP / SQL / WordPress',kind:es?'BACKEND & DATOS':'BACKEND & DATA',desc:es?'Integración de interfaces con lógica del servidor, persistencia y permisos.':'Connecting user interfaces to server-side logic, persistence and permissions.',experience:'Techno Global',links:[
+  {name:'Forma Studio',href:`/${lang}/engineering/forma-studio/`,note:es?'Caso técnico':'Technical case'},
+  {name:'PHP + SQLite',href:'https://github.com/Puchikboom/daniela-frias-creative-developer/tree/main/labs/pulse-studio/api',note:es?'Código de API':'API source'}]},
+ {n:'03',name:'Creative Front-end',kind:es?'INTERACCIÓN & UX':'INTERACTION & UX',desc:es?'Diseño con personalidad, animación, SVG y componentes sensibles a la interacción.':'Expressive interfaces, animation, SVG and interaction-driven components.',experience:es?'Diseño + desarrollo':'Design + development',links:[
+  {name:'ThreadLab',href:`/${lang}/threadlab/`,note:es?'Configurador SVG':'SVG configurator'},
+  {name:'Playground',href:`/${lang}/playground/`,note:es?'Seis experimentos':'Six experiments'}]},
+ {n:'04',name:'Testing / CI/CD',kind:es?'CALIDAD DE SOFTWARE':'SOFTWARE QUALITY',desc:es?'Pruebas de integración, interacción en Chromium y comprobaciones automáticas de accesibilidad.':'Integration tests, Chromium interaction checks and automated accessibility audits.',experience:'Techno Global',links:[
+  {name:'GitHub Actions',href:'https://github.com/Puchikboom/daniela-frias-creative-developer/actions',note:es?'Ejecuciones de CI':'CI runs'},
+  {name:'Test source',href:'https://github.com/Puchikboom/daniela-frias-creative-developer/tree/main/tests',note:es?'Código de pruebas':'Test code'}]}
+];
+---
+<section class:list={['expertise-proof',{'expertise-proof-about':placement==='about'}]} aria-labelledby={headingId}>
+ <div class="expertise-proof-top"><span>DF / {es?'INGENIERÍA DEMOSTRABLE':'ENGINEERING, MADE VISIBLE'}</span><span>04 / FRONT-END × BACKEND</span></div>
+ <div class="expertise-proof-intro">
+   <div><span class="expertise-proof-eyebrow">{es?'COMPETENCIAS + EVIDENCIAS':'CAPABILITIES + EVIDENCE'}</span><h2 id={headingId}>{es?'Más que una':'More than a'}<br/><em>{es?'lista de tecnologías.':'list of tools.'}</em></h2></div>
+   <div><p>{es?'La experiencia profesional se construye trabajando. Aquí la conecto con ejercicios independientes, código abierto y demostraciones interactivas para que puedas explorar cómo resuelvo problemas.':'Professional experience comes from doing the work. Here I connect it to independent experiments, inspectable code and interactive demonstrations so you can explore how I solve problems.'}</p><a class="expertise-proof-master" href={`/${lang}/engineering/`}>{es?'Explorar ingeniería':'Explore engineering'} <span aria-hidden="true">↗</span></a></div>
+ </div>
+ <div class="expertise-proof-grid">
+ {groups.map((g,i)=><article class:list={['expertise-proof-card',{'expertise-proof-ink':i===1,'expertise-proof-lime':i===2}]}>
+   <div class="expertise-proof-card-top"><span>{g.n} / {g.kind}</span><span aria-hidden="true">↗</span></div>
+   <h3>{g.name}<span class="expertise-proof-period">.</span></h3>
+   <p>{g.desc}</p>
+   <div class="expertise-proof-experience"><span>{es?'EXPERIENCIA':'EXPERIENCE'}</span><strong>{g.experience}</strong></div>
+   <div class="expertise-proof-links"><span>{es?'EVIDENCIA INDEPENDIENTE':'INDEPENDENT EVIDENCE'}</span>
+     {g.links.map(link=><a href={link.href} target={link.href.startsWith('https://')?'_blank':undefined} rel={link.href.startsWith('https://')?'noopener noreferrer':undefined}><span><strong>{link.name}</strong><small>{link.note}</small></span><span aria-hidden="true">↗</span></a>)}
+   </div>
+ </article>)}
+ </div>
+ <p class="expertise-proof-note">{es?'Los ejemplos públicos son desarrollos independientes con información ficticia; no incluyen código ni material de clientes o empleadores. Los alcances y pruebas se explican en cada repositorio.':'All public examples are independent work with fictional data, not employer or client material. Implementation scope and test evidence are documented in each repository.'}</p>
+</section>
+<style>
+.expertise-proof{padding:clamp(55px,7vw,110px) clamp(20px,5vw,78px);background:#e9e3dc;color:#251d2b;border-top:2px solid #2b2030}
+.expertise-proof-top{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;border-bottom:1px solid currentColor;padding-bottom:17px;font:700 11px 'DM Mono',monospace;letter-spacing:.08em}
+.expertise-proof-intro{display:grid;grid-template-columns:1.4fr .65fr;gap:clamp(25px,5vw,70px);align-items:end;margin:60px 0 52px}
+.expertise-proof-eyebrow{font:700 11px 'DM Mono',monospace;letter-spacing:.1em;color:#873957}
+.expertise-proof h2{font:900 clamp(50px,7.4vw,115px)/.92 'DM Sans',Arial,sans-serif;letter-spacing:-.08em;margin:18px 0 0}
+.expertise-proof h2 em{font:italic 500 1em/.95 'Playfair Display',Georgia,serif;color:#954263}
+.expertise-proof-intro p{font-size:clamp(15px,1.6vw,19px);line-height:1.7;margin:0 0 22px}
+.expertise-proof-master{display:inline-flex;justify-content:space-between;gap:26px;padding:15px 18px;background:#27202e;color:#f9f3e9;font:700 12px 'DM Mono',monospace}
+.expertise-proof-master:hover{background:#923d69}
+.expertise-proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.expertise-proof-card{min-width:0;display:flex;flex-direction:column;padding:clamp(22px,3vw,44px);background:#e2c9d3;border:1px solid #302434}
+.expertise-proof-card:nth-child(4){background:#d6cfe4}
+.expertise-proof-ink{background:#2a2030;color:#f6eee8}
+.expertise-proof-lime{background:#d2e396;color:#251d2b}
+.expertise-proof-card-top{display:flex;justify-content:space-between;gap:20px;font:700 10px 'DM Mono',monospace;letter-spacing:.08em;border-bottom:1px solid currentColor;padding-bottom:16px}
+.expertise-proof-card-top span:last-child{font-size:22px;line-height:.75}
+.expertise-proof h3{font:900 clamp(29px,4vw,58px)/.98 'DM Sans',Arial,sans-serif;letter-spacing:-.065em;margin:35px 0 17px;overflow-wrap:anywhere}
+.expertise-proof-period{color:#a04272}
+.expertise-proof-card>p{font-size:16px;line-height:1.65;max-width:580px;margin:0 0 26px}
+.expertise-proof-experience{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:auto;border-top:1px solid currentColor;padding:18px 0;font:700 11px 'DM Mono',monospace}
+.expertise-proof-experience>span{opacity:.77}
+.expertise-proof-links{display:grid;gap:0}
+.expertise-proof-links>span{font:700 10px 'DM Mono',monospace;letter-spacing:.08em;margin-bottom:8px;opacity:.8}
+.expertise-proof-links>a{display:flex;justify-content:space-between;align-items:center;gap:15px;border-top:1px solid currentColor;padding:14px 0}
+.expertise-proof-links>a:hover{text-decoration:underline;text-underline-offset:5px}
+.expertise-proof-links>a>span:first-child{display:grid;gap:5px}
+.expertise-proof-links a strong{font-size:16px}
+.expertise-proof-links a small{font-size:11px;font-family:'DM Mono',monospace;opacity:.8}
+.expertise-proof-links a>span:last-child{font-size:23px}
+.expertise-proof-note{font:500 12px/1.7 'DM Mono',monospace;max-width:800px;margin:30px 0 0}
+.expertise-proof-about{background:#e5e1db}
+@media(max-width:940px){.expertise-proof-intro{grid-template-columns:1fr}.expertise-proof-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.expertise-proof-grid{grid-template-columns:1fr}.expertise-proof-intro{margin:35px 0}.expertise-proof h2{font-size:clamp(45px,11vw,74px)}}
+@media(prefers-reduced-motion:reduce){.expertise-proof *{transition:none!important}}
+</style>

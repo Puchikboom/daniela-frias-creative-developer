@@ -50,6 +50,8 @@ jobs:
         run: node tests/data-lab.browser.mjs
       - name: Test React API Studio requests recovery responsive layout and WCAG
         run: node tests/react-api-studio.browser.mjs
+      - name: Audit technical expertise in Home and About (EN/ES)
+        run: node tests/technical-expertise.browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
