@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+const {lang='en'}=Astro.props;
+const es=lang==='es';
+const copy=es?{
+ back:'Volver al proyecto',kicker:'THREADLAB / LABORATORIO INTERACTIVO',head:'El tejido',accent:'toma forma.',intro:'Un configurador experimental de prendas. Cambia el tejido, el color y la silueta: cada decisión transforma la vista previa en tiempo real.',editor:'ESTUDIO DE CONFIGURACIÓN',options:'01 / MATERIAL Y FORMA',fabric:'TEJIDO',color:'COLOR',fit:'SILUETA',mark:'MONOGRAMA',markHelp:'Máximo tres caracteres; solo letras y números.',grid:'Mostrar retícula técnica',reset:'Restablecer',share:'Copiar enlace',copied:'Enlace copiado',save:'Guardar diseño',saved:'Diseño guardado',preview:'VISTA PREVIA / SVG EN DIRECTO',front:'FRENTE',backView:'ESPALDA',material:'MATERIAL',price:'PRECIO ORIENTATIVO',note:'Concepto independiente. Precios ficticios. Sin fabricación, compras ni procesamiento de pedidos.',details:'02 / DETRÁS DE LA INTERFAZ',detailsHead:'Interacción real. Sin ilusiones.',detailsBody:'La vista previa se genera con SVG original. Los controles actualizan el estado y se guardan en el navegador. El enlace compartible codifica una configuración reproducible. Incluye soporte para teclado y movimiento reducido.',source:'EXAMINAR CÓDIGO',project:'VER CASO ORIGINAL',downloadLabel:'Descargar SVG',description:'Visualización bidimensional; no es un motor de renderizado 3D.'
+}:{
+ back:'Back to project',kicker:'THREADLAB / INTERACTIVE LAB',head:'Make the',accent:'fabric yours.',intro:'An experimental garment configurator. Switch fabric, colour and silhouette; each decision transforms the live preview.',editor:'CONFIGURATION STUDIO',options:'01 / MATERIAL & FORM',fabric:'FABRIC',color:'COLOUR',fit:'SILHOUETTE',mark:'MONOGRAM',markHelp:'Up to three letters or numbers.',grid:'Show technical grid',reset:'Reset',share:'Copy link',copied:'Link copied',save:'Save design',saved:'Design saved',preview:'LIVE SVG PREVIEW',front:'FRONT',backView:'BACK',material:'MATERIAL',price:'ILLUSTRATIVE PRICE',note:'Independent concept. All prices are fictional. No manufacturing, checkout or order processing.',details:'02 / UNDER THE HOOD',detailsHead:'Real interaction. No illusions.',detailsBody:'This preview is rendered using original SVG. Controls update application state and persist in your browser. Shareable links encode reproducible configurations. Keyboard controls and reduced motion are supported.',source:'EXPLORE SOURCE',project:'ORIGINAL CASE STUDY',downloadLabel:'Download SVG',description:'Two-dimensional visualisation; not a 3D rendering engine.'
+};
+---
+<Layout lang={lang} page="work" title={`ThreadLab Interactive — Daniela Frías`}>
+<article class="tl" data-lang={lang}>
+ <div class="tl-top"><a href={`/${lang}/work/threadlab/`}>← {copy.back}</a><span>DF / R&D 002 — 2026</span></div>
+ <header class="tl-hero"><span class="tl-kicker">{copy.kicker}</span><h1>{copy.head}<br/><em>{copy.accent}</em></h1><p>{copy.intro}</p><div class="tl-marquee" aria-hidden="true"><span>DESIGN × CODE × MATERIAL × MOTION × DESIGN × CODE × MATERIAL × MOTION</span></div></header>
+ <div class="tl-studio">
+   <section class="tl-controls" aria-labelledby="tl-control-heading">
+     <div class="tl-counter">TL / 002 <span>01—04</span></div>
+     <h2 id="tl-control-heading">{copy.editor}<span>.</span></h2>
+     <div class="tl-subtitle">{copy.options}</div>
+     <fieldset><legend>01 / {copy.fabric}</legend>
+      <div class="tl-fabric-choices">
+       <label><input type="radio" name="fabric" value="cotton" checked/><span>{es?'Sarga de algodón':'Cotton twill'}<small>240 GSM</small></span></label>
+       <label><input type="radio" name="fabric" value="canvas"/><span>{es?'Lona estructurada':'Structured canvas'}<small>320 GSM</small></span></label>
+       <label><input type="radio" name="fabric" value="linen"/><span>{es?'Lino texturizado':'Textured linen'}<small>190 GSM</small></span></label>
+      </div>
+     </fieldset>
+     <fieldset><legend>02 / {copy.color}</legend><div class="tl-colors">
+       <label><input type="radio" name="color" value="ink" checked/><span class="tl-swatch" style="--swatch:#29212D" title={es?'Tinta profunda':'Deep ink'}></span><small>{es?'Tinta':'Ink'}</small></label>
+       <label><input type="radio" name="color" value="berry"/><span class="tl-swatch" style="--swatch:#A65F7C" title={es?'Baya':'Berry'}></span><small>{es?'Baya':'Berry'}</small></label>
+       <label><input type="radio" name="color" value="sage"/><span class="tl-swatch" style="--swatch:#9CB7A2" title={es?'Salvia':'Sage'}></span><small>{es?'Salvia':'Sage'}</small></label>
+       <label><input type="radio" name="color" value="cream"/><span class="tl-swatch" style="--swatch:#E4D9C8" title={es?'Crema':'Cream'}></span><small>{es?'Crema':'Cream'}</small></label>
+       <label><input type="radio" name="color" value="cobalt"/><span class="tl-swatch" style="--swatch:#5879D1" title={es?'Azul':'Cobalt'}></span><small>{es?'Azul':'Blue'}</small></label>
+     </div></fieldset>
+     <fieldset><legend>03 / {copy.fit}</legend><div class="tl-fit">
+       <label><input type="radio" name="fit" value="regular" checked/><span>{es?'Regular':'Regular'}</span></label>
+       <label><input type="radio" name="fit" value="relaxed"/><span>{es?'Holgado':'Relaxed'}</span></label>
+       <label><input type="radio" name="fit" value="oversized"/><span>{es?'Amplio':'Oversized'}</span></label>
+     </div></fieldset>
+     <fieldset><legend>04 / {copy.mark}</legend>
+       <label class="tl-field"><span class="tl-helper">{copy.markHelp}</span><input id="tl-monogram" type="text" value="DF" maxlength="3" autocomplete="off" spellcheck="false" aria-label={copy.mark}/></label>
+     </fieldset>
+     <label class="tl-toggle"><input id="tl-grid" type="checkbox" checked/>{copy.grid}</label>
+     <div class="tl-buttons"><button type="button" id="tl-reset">{copy.reset}</button><button type="button" id="tl-share">{copy.share}</button></div>
+     <p class="tl-feedback" role="status" aria-live="polite" id="tl-feedback"></p>
+   </section>
+   <section class="tl-preview" aria-labelledby="tl-preview-heading">
+     <div class="tl-preview-head"><span id="tl-preview-heading">{copy.preview}</span><span>TL / CUSTOM 01</span></div>
+     <div class="tl-canvas" id="tl-canvas">
+      <svg id="tl-garment" role="img" aria-label={es?'Prenda personalizable vista frontal':'Customizable garment front view'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 640">
+       <defs><pattern id="tl-grain" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 12L12 0" stroke="#fff" stroke-opacity=".11" stroke-width="1"/></pattern><pattern id="tl-cross" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M0 0H15M0 0V15" stroke="#fff" stroke-opacity=".22" fill="none" stroke-width="1"/></pattern><pattern id="tl-lines" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 0L8 8" stroke="#fff" stroke-opacity=".18" stroke-width="1"/></pattern><pattern id="tl-pattern" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 12L12 0" stroke="#fff" stroke-opacity=".11" stroke-width="1"/></pattern></defs>
+       <g class="tl-tech-grid" id="tl-tech-grid" aria-hidden="true"><path d="M100 0V640 M200 0V640 M300 0V640 M400 0V640 M500 0V640 M0 100H600 M0 200H600 M0 300H600 M0 400H600 M0 500H600 M0 600H600" stroke="#ffffff" stroke-opacity=".08"/><path d="M300 20V620 M40 320H560" stroke="#e8e3dc" stroke-opacity=".22" stroke-dasharray="4 7"/></g>
+       <g id="tl-shirt" fill="#29212d" stroke="#e4d7d3" stroke-width="2" stroke-linejoin="round">
+        <path id="tl-body" d="M215 115L252 97Q300 132 348 97L385 115L455 161L504 268L425 298L400 254L400 542L200 542L200 254L175 298L96 268L145 161Z"/>
+        <path id="tl-texture" d="M215 115L252 97Q300 132 348 97L385 115L455 161L504 268L425 298L400 254L400 542L200 542L200 254L175 298L96 268L145 161Z" fill="url(#tl-grain)" stroke="none"/>
+        <path d="M252 97Q300 190 348 97Q300 132 252 97Z" fill="#131018" stroke-width="3"/>
+        <path id="tl-seams" d="M201 250L201 542M399 250L399 542M215 115L201 250M385 115L399 250M201 527H399M96 268L175 294M425 294L504 268" fill="none" stroke="#fff" stroke-opacity=".36" stroke-width="2" stroke-dasharray="5 4"/>
+        <text id="tl-shirt-mark" x="340" y="265" fill="#f6eada" stroke="none" font-family="Arial, sans-serif" font-weight="700" font-size="26" text-anchor="middle">DF</text>
+       </g>
+       <text x="45" y="45" fill="#fff" opacity=".55" font-family="monospace" font-size="13">FRONT / 001</text>
+       <text x="45" y="603" fill="#fff" opacity=".55" font-family="monospace" font-size="12">TECHNICAL STUDY / NOT TO SCALE</text>
+      </svg>
+      <div class="tl-canvas-label"><span>{copy.front}</span><span>100% SVG</span></div>
+     </div>
+     <div class="tl-specs"><div><small>{copy.material}</small><strong id="tl-material">Cotton twill · 240 GSM</strong></div><div><small>{copy.price}</small><strong id="tl-price">$79</strong></div></div>
+     <div class="tl-export"><button id="tl-export" type="button">{copy.downloadLabel} ↗</button><span>{copy.description}</span></div>
+   </section>
+ </div>
+ <footer class="tl-outro"><div><span class="tl-kicker">{copy.details}</span><h2>{copy.detailsHead}</h2><p>{copy.detailsBody}</p><p class="tl-note">{copy.note}</p></div><div class="tl-outro-links"><a href="https://github.com/Puchikboom/daniela-frias-creative-developer/tree/main/public/threadlab" target="_blank" rel="noopener noreferrer">{copy.source} ↗</a><a href={`/${lang}/work/threadlab/`}>{copy.project} ↗</a></div></footer>
+</article>
+<script type="module" src="/threadlab/configurator.js"></script>
+<link rel="stylesheet" href="/threadlab/configurator.css"/>
+</Layout>
