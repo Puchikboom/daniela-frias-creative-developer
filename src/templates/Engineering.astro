@@ -25,7 +25,7 @@ const labs=[
        {p.slug==='pulse-studio' ? <><div>REACT / TS</div><span>↔</span><div>PHP REST API</div><span>↔</span><div>DEMO DATA</div></> : <><div>FORM + NONCE</div><span>→</span><div>WORDPRESS / PHP</div><span>→</span><div>ADMIN REST</div></>}
      </div>
    </div>
-   <div class="eng-card-bottom"><p>{p.details}</p>{p.slug==='pulse-studio'&&<a href="/pulse-studio/" class="eng-demo-link">{es?'PROBAR DEMO INTERACTIVA':'TRY INTERACTIVE DEMO'} ↗</a>}<a href={p.url} target="_blank" rel="noopener noreferrer">{es?'EXPLORAR EL CÓDIGO':'EXPLORE SOURCE CODE'} ↗</a></div>
+   <div class="eng-card-bottom"><p>{p.details}</p>{p.slug==='forma-studio'&&<a href={`/${lang}/engineering/forma-studio/`} class="eng-demo-link">{es?'LEER CASO TÉCNICO':'READ TECHNICAL CASE'} ↗</a>}{p.slug==='pulse-studio'&&<a href="/pulse-studio/" class="eng-demo-link">{es?'PROBAR DEMO INTERACTIVA':'TRY INTERACTIVE DEMO'} ↗</a>}<a href={p.url} target="_blank" rel="noopener noreferrer">{es?'EXPLORAR EL CÓDIGO':'EXPLORE SOURCE CODE'} ↗</a></div>
   </section>)}
  </section>
  <section class="eng-principles"><span class="eng-eyebrow">03 / {es?'PRINCIPIOS':'ENGINEERING PRINCIPLES'}</span><h2>{es?'Construir bien.':'Built with intent.'}</h2><div><p>{es?'Este trabajo es independiente: todos los nombres y datos son ficticios. No se utiliza material confidencial de empresas o clientes.':'All work here is independent. Every company and record is fictional. No employer or client confidential material is used.'}</p><p>{es?'Las demos están claramente identificadas como prototipos hasta superar pruebas funcionales y de seguridad.':'These demos are explicitly labeled as prototypes until full functionality and security checks are complete.'}</p></div></section>
