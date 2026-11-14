@@ -74,6 +74,33 @@ jobs:
         run: npm run build
       - name: Build static browser demo (no PHP)
         run: npm run build:demo
+  wordpress-integration:
+    name: Forma WordPress real integration
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: forma_test_pw
+          MYSQL_DATABASE: forma_integration
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -u root -pforma_test_pw"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure WP PHP extensions and CLI
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y php-mysql php-xml php-mbstring php-curl
+          curl -fLsS https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /tmp/wp-cli.phar
+          sudo install -m 755 /tmp/wp-cli.phar /usr/local/bin/wp
+          wp --info
+      - name: Verify plugin in a disposable WordPress installation
+        run: bash labs/forma-studio/tests/wordpress-integration.sh
   php:
     name: PHP source syntax
     runs-on: ubuntu-latest
