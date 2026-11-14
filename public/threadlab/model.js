@@ -35,7 +35,7 @@ export function shareConfiguration(input){
  const c=sanitizeConfiguration(input);
  const params=new URLSearchParams();
  params.set('fabric',c.fabric);params.set('color',c.color);params.set('fit',c.fit);
- if(c.monogram)params.set('mark',c.monogram);
+ params.set('mark',c.monogram);
  params.set('grid',c.showGrid?'1':'0');
  return params.toString();
 }
