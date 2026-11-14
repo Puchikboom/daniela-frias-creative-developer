@@ -1,0 +1,32 @@
+name: Engineering labs checks
+on:
+  push:
+    paths: ["labs/**", ".github/workflows/engineering-labs.yml"]
+  pull_request:
+    paths: ["labs/**", ".github/workflows/engineering-labs.yml"]
+jobs:
+  frontend:
+    name: React TypeScript build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/pulse-studio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Typecheck and build
+        run: npm run build
+  php:
+    name: PHP source syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate PHP
+        run: |
+          php -l labs/pulse-studio/api/router.php
+          php -l labs/pulse-studio/api/seed.php
+          php -l labs/forma-studio/forma-studio.php
