@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
+set -x
 # Disposable WordPress integration test. All content fictional; never run on a live site.
 ROOT="$PWD"
 TESTROOT="$(mktemp -d)"
-cleanup() { if [ -n "${SERVER_PID:-}" ]; then kill "$SERVER_PID" 2>/dev/null || true; fi; rm -rf "$TESTROOT"; }
+cleanup() { rc=$?; if [ "$rc" -ne 0 ]; then echo "WP integration failed at stage, page response:"; test -f "$TESTROOT/page.html" && head -c 700 "$TESTROOT/page.html" || true; echo "PHP server logs:"; test -f "$TESTROOT/php-server.log" && tail -n 30 "$TESTROOT/php-server.log" || true; fi; if [ -n "${SERVER_PID:-}" ]; then kill "$SERVER_PID" 2>/dev/null || true; fi; rm -rf "$TESTROOT"; }
 trap cleanup EXIT
 cd "$TESTROOT"
 wp core download --quiet
@@ -15,10 +16,10 @@ cp -r "$ROOT/labs/forma-studio/assets" wp-content/plugins/forma-studio/
 wp plugin activate forma-studio --quiet
 PAGE_ID=$(wp post create --post_type=page --post_status=publish --post_title='Demo inquiry' --post_content='[forma_inquiry_form]' --porcelain)
 PAGE_URL=$(wp post url "$PAGE_ID")
-php -S 127.0.0.1:8091 -t "$TESTROOT" >/dev/null 2>&1 &
+php -S 127.0.0.1:8091 -t "$TESTROOT" >"$TESTROOT/php-server.log" 2>&1 &
 SERVER_PID=$!
 for i in $(seq 1 30); do
-  if curl -fsS "$PAGE_URL" -o "$TESTROOT/page.html"; then break; fi
+  if curl -fsS "$PAGE_URL" -o "$TESTROOT/page.html" 2>/dev/null; then break; fi
   sleep 1
 done
 test -s "$TESTROOT/page.html"
