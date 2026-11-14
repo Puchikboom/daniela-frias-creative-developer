@@ -17,6 +17,16 @@ rmSync(destination,{recursive:true,force:true});
 mkdirSync(destination,{recursive:true});
 cpSync(resolve(lab,'dist'),destination,{recursive:true});
 if(!existsSync(resolve(destination,'index.html')))throw Error('Static Pulse demo index missing');
-// Only compiled frontend assets are copied. PHP files, SQLite DB and API source
-// remain separate and are never deployed with the public Astro site.
+// Build an independent React + TypeScript Playground experiment as static assets.
+const reactLab=resolve(root,'labs/react-api-studio');
+if(!existsSync(resolve(reactLab,'node_modules'))){
+ run('npm',['install','--no-audit','--no-fund'],reactLab);
+}
+run('npm',['run','build'],reactLab);
+const reactDestination=resolve(root,'public/react-api-studio');
+rmSync(reactDestination,{recursive:true,force:true});
+mkdirSync(reactDestination,{recursive:true});
+cpSync(resolve(reactLab,'dist'),reactDestination,{recursive:true});
+if(!existsSync(resolve(reactDestination,'index.html')))throw Error('React API Studio build missing');
+// Only compiled static assets are deployed. No backend credentials or private data.
 run('npm',['exec','--','astro','build'],root);

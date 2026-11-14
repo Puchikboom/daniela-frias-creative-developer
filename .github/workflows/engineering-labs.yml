@@ -3,7 +3,7 @@ on:
   push:
     paths: ["labs/**", "src/**", "public/threadlab/**", "public/data-lab/**", "tests/**", "scripts/**", "package.json", ".github/workflows/engineering-labs.yml"]
   pull_request:
-    paths: ["labs/**", "src/**", "public/threadlab/**", "tests/**", ".github/workflows/engineering-labs.yml"]
+    paths: ["labs/**", "src/**", "public/threadlab/**", "tests/**", "scripts/**", ".github/workflows/engineering-labs.yml"]
 jobs:
   portfolio:
     name: Astro + safe Pulse static demo
@@ -21,6 +21,8 @@ jobs:
       - name: Ensure PHP and SQLite never ship
         run: |
           test -f dist/pulse-studio/index.html
+          test -f dist/react-api-studio/index.html
+          test -f dist/react-api-studio/catalog.json
           test ! -e dist/pulse-studio/api/router.php
           if find dist/pulse-studio -name '*.php' -o -name '*.sqlite' | grep .; then exit 1; fi
   browser-qa:
@@ -46,6 +48,8 @@ jobs:
         run: node tests/threadlab.a11y.mjs
       - name: Test bilingual Data Lab product interactions and accessibility
         run: node tests/data-lab.browser.mjs
+      - name: Test React API Studio requests recovery responsive layout and WCAG
+        run: node tests/react-api-studio.browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
