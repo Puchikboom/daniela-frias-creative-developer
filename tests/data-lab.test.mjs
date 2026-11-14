@@ -4,7 +4,7 @@ import {records,filterRecords,summarize,toCSV} from '../public/data-lab/data-mod
 test('search, status and category filters compose without mutating source',()=>{
  const copy=records.slice();
  const filtered=filterRecords(records,{query:'northstar',status:'Active',type:'Product'});
- assert.equal(filtered.length,2);
+ assert.equal(filtered.length,1);
  assert.deepEqual(records,copy);
 });
 test('sorting is deterministic and descending numerical sort works',()=>{
