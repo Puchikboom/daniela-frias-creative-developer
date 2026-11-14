@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-set -x
 # Disposable WordPress integration test. All content fictional; never run on a live site.
 ROOT="$PWD"
 TESTROOT="$(mktemp -d)"
@@ -33,7 +32,7 @@ print(m.group(1))
 PY
 )"
 # Public visitors should never retrieve private inquiry data.
-CODE=$(curl -sS -o "$TESTROOT/rest.json" -w '%{http_code}' "http://127.0.0.1:8091/wp-json/forma/v1/inquiries")
+CODE=$(curl -sS -o "$TESTROOT/rest.json" -w '%{http_code}' "http://127.0.0.1:8091/?rest_route=/forma/v1/inquiries")
 test "$CODE" = "401" -o "$CODE" = "403"
 # Missing/invalid CSRF token must be rejected.
 CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST 'http://127.0.0.1:8091/wp-admin/admin-post.php' -d 'action=forma_submit_inquiry&name=Fake+Name&email=fake@example.test&message=Fictional+project')
