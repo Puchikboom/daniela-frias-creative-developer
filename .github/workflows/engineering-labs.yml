@@ -1,7 +1,7 @@
 name: Engineering labs checks
 on:
   push:
-    paths: ["labs/**", "src/**", "scripts/**", "package.json", ".github/workflows/engineering-labs.yml"]
+    paths: ["labs/**", "src/**", "public/threadlab/**", "tests/**", "scripts/**", "package.json", ".github/workflows/engineering-labs.yml"]
   pull_request:
     paths: ["labs/**", ".github/workflows/engineering-labs.yml"]
 jobs:
@@ -23,6 +23,15 @@ jobs:
           test -f dist/pulse-studio/index.html
           test ! -e dist/pulse-studio/api/router.php
           if find dist/pulse-studio -name '*.php' -o -name '*.sqlite' | grep .; then exit 1; fi
+  threadlab:
+    name: ThreadLab configuration tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test tests/threadlab.test.mjs
   frontend:
     name: React TypeScript build
     runs-on: ubuntu-latest
