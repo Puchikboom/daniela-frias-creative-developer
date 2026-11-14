@@ -38,10 +38,12 @@ jobs:
         run: npm run build
       - name: Install Playwright browser
         run: |
-          npm install --no-save --package-lock=false playwright
+          npm install --no-save --package-lock=false playwright @axe-core/playwright
           npx playwright install --with-deps chromium
       - name: Test mobile and desktop interactions
         run: node tests/threadlab.browser.mjs
+      - name: Audit EN and ES WCAG 2.1 A/AA
+        run: node tests/threadlab.a11y.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
