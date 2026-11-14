@@ -1,6 +1,6 @@
 # Forma Studio — WordPress / PHP Engineering Lab
 
-**Status: prototype, not production-ready.** An original WordPress plugin written for an independent portfolio project. No employer source, client data, proprietary design, or third-party confidential assets are included.
+**Status: integration-tested prototype, not production-ready.** An original WordPress plugin written for an independent portfolio project. No employer source, client data, proprietary design, or third-party confidential assets are included.
 
 ## Purpose
 
@@ -17,6 +17,12 @@ Demonstrate hands-on PHP 8 and WordPress development beyond page builders: hooks
 - Admin-only paginated `GET /wp-json/forma/v1/inquiries` endpoint
 - Original CSS using an editorial cream / ink / berry / lime palette
 - Success and error status messages after redirect
+
+## Automated WordPress integration verification
+
+GitHub Actions provisions a **disposable WordPress installation and MySQL database**, activates the plugin, and checks the rendered shortcode, nonce enforcement, fictional form submission, private custom post storage, and administrator-only REST access. The test script lives at `tests/wordpress-integration.sh`.
+
+Passing this test does **not** constitute a production security audit. Consent, retention/deletion, stronger abuse controls, accessibility and security hardening remain open.
 
 ## Local test environment
 
@@ -39,7 +45,7 @@ Use a **local disposable WordPress install**, not a live client site.
 - The sample uses a basic transient-based throttling mechanism; it is **not** robust against distributed abuse.
 - The API is explicitly restricted to users with `manage_options`. This is not a public-facing contact directory.
 - Be mindful of full-page caches when displaying public WordPress nonce-protected forms.
-- Verify behavior with integration tests before claiming the plugin has passed security testing.
+- Real WordPress integration tests pass; full production security, privacy and accessibility audits remain pending.
 
 ## CV and portfolio language
 

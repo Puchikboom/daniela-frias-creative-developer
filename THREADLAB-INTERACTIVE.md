@@ -34,7 +34,7 @@ npm run build
 npm run preview
 ```
 
-The public pages should be tested interactively in a real browser on desktop and mobile with keyboard-only navigation. Passing a static build and pure model tests does not establish an accessibility audit or full end-to-end browser validation.
+Automated Chromium smoke tests now exercise both English and Spanish at desktop/mobile widths, fabric, colour, fit, monogram, reset, reload persistence, grid, SVG export, deep links, keyboard radio selection, and horizontal overflow checks. Screenshots are retained as CI artifacts. This does **not** constitute a full WCAG audit or cross-browser certification.
 
 ## CV / case study language (after publishing and reviewing)
 
