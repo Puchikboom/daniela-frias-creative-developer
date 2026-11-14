@@ -14,7 +14,8 @@ try{
   await new Promise(r=>setTimeout(r,200));
  }
  for(const locale of ['en','es']){
-  const page=await browser.newPage({viewport:{width:390,height:844}});
+  const context=await browser.newContext({viewport:{width:390,height:844}});
+  const page=await context.newPage();
   await page.goto(base+'/'+locale+'/threadlab/',{waitUntil:'networkidle'});
   const result=await new AxeBuilder({page})
      .withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa'])
@@ -26,7 +27,7 @@ try{
   console.log(locale, 'WCAG 2.1 A/AA automated:', result.violations.length,'violations',result.passes.length,'passed rules');
   for(const v of result.violations)console.log(v.impact,v.id,v.nodes.map(n=>n.target));
   if(result.violations.length)failed=true;
-  await page.close();
+  await context.close();
  }
 }catch(e){console.error(e);failed=true;}
 finally{await browser.close();server.kill();}
