@@ -40,7 +40,7 @@ function validated(array $body): array {
         if (!array_key_exists($key, $body)) reply(422, ['error'=>"Missing field: $key"]);
     }
     foreach (['name','client','category'] as $key) {
-        if (!is_string($body[$key]) || mb_strlen(trim($body[$key])) < 2 || mb_strlen($body[$key]) > 100) reply(422, ['error'=>"Invalid $key"]);
+        if (!is_string($body[$key]) || strlen(trim($body[$key])) < 2 || strlen($body[$key]) > 100) reply(422, ['error'=>"Invalid $key"]);
     }
     if (!in_array($body['status'], ['In progress', 'In review', 'Completed'], true)) reply(422, ['error'=>'Invalid status']);
     if (!is_numeric($body['budget']) || $body['budget'] < 0 || $body['budget'] > 10000000) reply(422, ['error'=>'Invalid budget']);
