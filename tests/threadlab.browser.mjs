@@ -52,7 +52,7 @@ try{
   check((await download).suggestedFilename()==='threadlab-design.svg',locale+': SVG export');
   await page.screenshot({path:'qa-artifacts/threadlab-'+locale+'.png',fullPage:true});
   await page.locator('#tl-reset').click();
-  check(await page.locator('#tl-body').getAttribute('fill')==='#29212d',locale+': reset restores color');
+  check((await page.locator('#tl-body').getAttribute('fill'))?.toLowerCase()==='#29212d',locale+': reset restores color');
   check(await page.locator('#tl-monogram').inputValue()==='DF',locale+': reset restores monogram');
   const dims=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,inner:window.innerWidth}));
   check(dims.scroll<=dims.inner+2,locale+': no horizontal overflow');
