@@ -1,7 +1,7 @@
 name: Engineering labs checks
 on:
   push:
-    paths: ["labs/**", "src/**", "public/threadlab/**", "tests/**", "scripts/**", "package.json", ".github/workflows/engineering-labs.yml"]
+    paths: ["labs/**", "src/**", "public/threadlab/**", "public/data-lab/**", "tests/**", "scripts/**", "package.json", ".github/workflows/engineering-labs.yml"]
   pull_request:
     paths: ["labs/**", "src/**", "public/threadlab/**", "tests/**", ".github/workflows/engineering-labs.yml"]
 jobs:
@@ -44,6 +44,8 @@ jobs:
         run: node tests/threadlab.browser.mjs
       - name: Audit EN and ES WCAG 2.1 A/AA
         run: node tests/threadlab.a11y.mjs
+      - name: Test bilingual Data Lab product interactions and accessibility
+        run: node tests/data-lab.browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -58,7 +60,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: node --test tests/threadlab.test.mjs
+      - run: node --test tests/threadlab.test.mjs tests/data-lab.test.mjs
   frontend:
     name: React TypeScript build
     runs-on: ubuntu-latest
