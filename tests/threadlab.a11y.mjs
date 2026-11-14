@@ -25,7 +25,7 @@ try{
    passes:result.passes.length,
   },null,2));
   console.log(locale, 'WCAG 2.1 A/AA automated:', result.violations.length,'violations',result.passes.length,'passed rules');
-  for(const v of result.violations)console.log(v.impact,v.id,v.nodes.map(n=>n.target));
+  for(const v of result.violations){console.log(v.impact,v.id,v.nodes.map(n=>n.target));for(const n of v.nodes)console.log('DETAIL',n.failureSummary,'HTML',n.html?.slice(0,200));}
   if(result.violations.length)failed=true;
   await context.close();
  }
