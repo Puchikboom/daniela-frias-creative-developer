@@ -12,6 +12,18 @@ on:
       - ".github/workflows/engineering-labs.yml"
 
 jobs:
+  portfolio:
+    name: Astro production build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+
   frontend:
     name: React TypeScript build
     runs-on: ubuntu-latest
