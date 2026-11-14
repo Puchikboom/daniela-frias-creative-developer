@@ -16,13 +16,14 @@ const t=es?{
   duration:'DURACIÓN',stagger:'DESFASE',timeline:'TIEMPO',play:'Reproducir',stop:'Detener',
   stack:'QUÉ DEMUESTRA',ending:'El código también puede tener una voz visual.',back:'Explorar proyectos',
   reduced:'Las animaciones se reducen según la preferencia de tu sistema.',
-}:{intro:'A laboratory for interfaces that respond, generate and transform. These are not static mockups: move the controls, change the rules and take the result with you.',tag:'INTERACTIVE EXPERIMENTS / CREATIVE CODE',hint:'SCROLL TO EXPLORE',type:'KINETIC TYPOGRAPHY',typeDesc:'Letters react to the cursor and to rhythm and amplitude controls. A compact physical typography system.',word:'WORD',speed:'SPEED',energy:'ENERGY',reset:'Reset',field:'FORCE FIELD',fieldDesc:'Particles follow a vector field. Move your pointer across the scene and tune the turbulence.',density:'PARTICLES',turb:'TURBULENCE',mode:'MODE',flow:'Flow',orbit:'Orbit',pause:'Pause',resume:'Resume',poster:'GENERATIVE POSTER',posterDesc:'A small composition engine: combine typography, geometry and color, then export an editable SVG.',phrase:'TEXT',palette:'PALETTE',layout:'COMPOSITION',generate:'New variation',download:'Export SVG',motion:'MOTION SYSTEM',motionDesc:'Design the timing of a visual sequence. Play it and scrub the animation timeline.',duration:'DURATION',stagger:'STAGGER',timeline:'TIMELINE',play:'Play',stop:'Stop',stack:'UNDER THE HOOD',ending:'Code can have a visual voice, too.',back:'Explore projects',reduced:'Animations are reduced according to your system preferences.'};
+  data:'LABORATORIO DE DATOS',dataDesc:'Doce proyectos ficticios, una sola interfaz: combina filtros, explora indicadores y descarga los resultados. Una demostración de lógica de producto, estado y visualización accesible.',dataSearch:'BUSCAR',dataSearchPlaceholder:'Proyecto, cliente o categoría...',dataType:'TIPO',dataStatus:'ESTADO',dataSort:'ORDENAR',dataAll:'Todos',dataName:'Nombre',dataHours:'Horas (más primero)',dataProgress:'Progreso (más primero)',dataReset:'Limpiar filtros',dataExport:'Descargar CSV',dataCount:'PROYECTOS',dataTime:'HORAS',dataAvg:'AVANCE MEDIO',dataActive:'ACTIVOS',dataChart:'DISTRIBUCIÓN POR CATEGORÍA',dataRows:'RESULTADOS',dataPrev:'Anterior',dataNext:'Siguiente',
+}:{intro:'A laboratory for interfaces that respond, generate and transform. These are not static mockups: move the controls, change the rules and take the result with you.',tag:'INTERACTIVE EXPERIMENTS / CREATIVE CODE',hint:'SCROLL TO EXPLORE',type:'KINETIC TYPOGRAPHY',typeDesc:'Letters react to the cursor and to rhythm and amplitude controls. A compact physical typography system.',word:'WORD',speed:'SPEED',energy:'ENERGY',reset:'Reset',field:'FORCE FIELD',fieldDesc:'Particles follow a vector field. Move your pointer across the scene and tune the turbulence.',density:'PARTICLES',turb:'TURBULENCE',mode:'MODE',flow:'Flow',orbit:'Orbit',pause:'Pause',resume:'Resume',poster:'GENERATIVE POSTER',posterDesc:'A small composition engine: combine typography, geometry and color, then export an editable SVG.',phrase:'TEXT',palette:'PALETTE',layout:'COMPOSITION',generate:'New variation',download:'Export SVG',motion:'MOTION SYSTEM',motionDesc:'Design the timing of a visual sequence. Play it and scrub the animation timeline.',duration:'DURATION',stagger:'STAGGER',timeline:'TIMELINE',play:'Play',stop:'Stop',stack:'UNDER THE HOOD',ending:'Code can have a visual voice, too.',back:'Explore projects',reduced:'Animations are reduced according to your system preferences.',data:'DATA EXPLORER',dataDesc:'Twelve fictional projects, one interface: combine filters, explore derived metrics and download the results. A small demonstration of product logic, state and accessible visualization.',dataSearch:'SEARCH',dataSearchPlaceholder:'Project, client or category...',dataType:'TYPE',dataStatus:'STATUS',dataSort:'SORT BY',dataAll:'All',dataName:'Name',dataHours:'Hours (high first)',dataProgress:'Progress (high first)',dataReset:'Clear filters',dataExport:'Download CSV',dataCount:'PROJECTS',dataTime:'HOURS',dataAvg:'AVERAGE PROGRESS',dataActive:'ACTIVE',dataChart:'PROJECTS BY CATEGORY',dataRows:'RESULTS',dataPrev:'Previous',dataNext:'Next'};
 ---
 <Layout lang={lang} page="playground" title={`Playground — Daniela Frías`}>
 <link rel="stylesheet" href="/playground.css"/>
 <div class="pg" data-lang={lang}>
   <section class="pg-hero">
-    <div class="pg-hero-top"><span>DF / R&D LAB</span><span>{t.tag}</span><span>2026 — LAB V2.1 / 4 EXPERIMENTS</span></div>
+    <div class="pg-hero-top"><span>DF / R&D LAB</span><span>{t.tag}</span><span>2026 — LAB V3 / 5 EXPERIMENTS</span></div>
     <h1 aria-label="Playground">PLAY<span class="pg-title-outline">GROUND</span><span class="pg-title-dot">.</span></h1>
     <div class="pg-hero-bottom"><p>{t.intro}</p><span class="pg-side-note">↓ {t.hint}</span></div>
     <div class="pg-track" aria-hidden="true"><div>CREATIVE CODE ✳ DESIGN SYSTEMS ✳ MOTION ENGINEERING ✳ CREATIVE CODE ✳ DESIGN SYSTEMS ✳ MOTION ENGINEERING ✳</div></div>
@@ -75,7 +76,40 @@ const t=es?{
     <div class="pg-controls pg-motion-controls"><label class="pg-control"><span>{t.duration} <output id="duration-out">1500ms</output></span><input id="motion-duration" type="range" min="600" max="3000" value="1500" step="100"/></label><label class="pg-control"><span>{t.stagger} <output id="stagger-out">110ms</output></span><input id="motion-stagger" type="range" min="0" max="300" value="110" step="10"/></label><label class="pg-control pg-scrubber"><span>{t.timeline} <output id="timeline-out">0%</output></span><input id="motion-scrub" type="range" min="0" max="100" value="0" step="1"/></label><button class="pg-action pg-action-bright" id="motion-play">▶ {t.play}</button><button class="pg-action pg-small" id="motion-stop">■ {t.stop}</button></div>
     <div class="pg-exp-foot"><span>{t.stack}</span><p>WAAPI · independent keyframes · easing curves · time scrubbing</p></div>
   </section>
+
+  <section class="pg-experiment pg-data" id="data-lab" data-lang={lang} aria-labelledby="data-h">
+    <div class="pg-exp-head"><span>05 / PRODUCT ENGINEERING</span><span>DATA MODEL · STATE · EXPORT</span></div>
+    <div class="pg-exp-intro"><h2 id="data-h">{t.data}<span class="dl-dot">.</span></h2><p>{t.dataDesc}</p></div>
+    <div class="dl-shell">
+      <div class="dl-controls">
+        <div class="dl-section-index">INTERACTIVE DATASET / 001—012 <span>100% FICTIONAL</span></div>
+        <div class="dl-form">
+          <label><span>{t.dataSearch}</span><input type="search" id="dl-search" placeholder={t.dataSearchPlaceholder}/></label>
+          <label><span>{t.dataType}</span><select id="dl-type"><option value="All">{t.dataAll}</option><option value="Product">Product</option><option value="Commerce">Commerce</option><option value="Platform">Platform</option><option value="Brand">Brand</option></select></label>
+          <label><span>{t.dataStatus}</span><select id="dl-status"><option value="All">{t.dataAll}</option><option value="Active">Active</option><option value="Review">Review</option><option value="Done">Done</option></select></label>
+          <label><span>{t.dataSort}</span><select id="dl-sort"><option value="name">{t.dataName}</option><option value="hours">{t.dataHours}</option><option value="progress">{t.dataProgress}</option></select></label>
+        </div>
+        <div class="dl-actions"><button type="button" id="dl-reset">{t.dataReset}</button><button type="button" id="dl-export">{t.dataExport} ↓</button></div>
+      </div>
+      <div class="dl-board">
+        <div class="dl-top"><span>DF / PRODUCT LOGIC</span><strong>DATA LAB <span>005</span></strong></div>
+        <div class="dl-metrics">
+          <div><small>{t.dataCount}</small><strong id="dl-total">12</strong></div>
+          <div><small>{t.dataTime}</small><strong id="dl-hours">—</strong></div>
+          <div><small>{t.dataAvg}</small><strong id="dl-progress">—</strong></div>
+          <div><small>{t.dataActive}</small><strong id="dl-active">—</strong></div>
+        </div>
+        <div class="dl-vis"><div class="dl-vis-head"><strong>{t.dataChart}</strong><span id="dl-results" aria-live="polite">12</span></div><div id="dl-chart" role="img" aria-label={t.dataChart}></div></div>
+        <div class="dl-table-head"><strong>{t.dataRows}</strong><span>API-LIKE STATE / CLIENT SIDE</span></div>
+        <div class="dl-table-scroll" tabindex="0" role="region" aria-label={es?"Tabla de resultados desplazable":"Scrollable results table"}><table><thead><tr><th>{es?'Proyecto':'Project'}</th><th>{es?'Cliente':'Client'}</th><th>{t.dataType}</th><th>{t.dataStatus}</th><th>{t.dataTime}</th><th>{t.dataAvg}</th></tr></thead><tbody id="dl-rows"></tbody></table><p id="dl-empty" hidden></p></div>
+        <div class="dl-pagination"><button type="button" id="dl-prev">{t.dataPrev}</button><span id="dl-page">1 / 2</span><button type="button" id="dl-next">{t.dataNext}</button></div>
+        <p id="dl-feedback" class="dl-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="pg-exp-foot"><span>{t.stack}</span><p>Pure JavaScript functions · derived state · search / sort / filters · SVG-free CSS data bars · safe CSV export · Node tests</p></div>
+  </section>
   <section class="pg-outro"><span>DF / END OF EXPERIMENTS</span><h2>{t.ending}</h2><p>{t.reduced}</p><a href={`/${lang}/work/`} class="pg-action pg-action-bright">{t.back} ↗</a></section>
 </div>
 <script src="/playground.js" defer></script>
+<script type="module" src="/data-lab/data-lab.js"></script>
 </Layout>
