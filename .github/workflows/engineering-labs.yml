@@ -1,10 +1,28 @@
 name: Engineering labs checks
 on:
   push:
-    paths: ["labs/**", ".github/workflows/engineering-labs.yml"]
+    paths: ["labs/**", "src/**", "scripts/**", "package.json", ".github/workflows/engineering-labs.yml"]
   pull_request:
     paths: ["labs/**", ".github/workflows/engineering-labs.yml"]
 jobs:
+  portfolio:
+    name: Astro + safe Pulse static demo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install main dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build integrated website with safe demo
+        run: npm run build
+      - name: Ensure PHP and SQLite never ship
+        run: |
+          test -f dist/pulse-studio/index.html
+          test ! -e dist/pulse-studio/api/router.php
+          if find dist/pulse-studio -name '*.php' -o -name '*.sqlite' | grep .; then exit 1; fi
   frontend:
     name: React TypeScript build
     runs-on: ubuntu-latest
