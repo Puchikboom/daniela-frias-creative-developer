@@ -32,7 +32,7 @@ try{
   const original=await page.locator('#tl-body').getAttribute('d');
   await page.locator('label:has(input[name="fabric"][value="linen"])').click();
   const materialAfter=await page.locator('#tl-material').innerText();
-  if(!materialAfter.includes(locale==='es'?'Lino':'Linen')){
+  if(!materialAfter.toLowerCase().includes(locale==='es'?'lino':'linen')){
     console.error('Browser debug',JSON.stringify({locale,materialAfter,errors,scripts:await page.locator('script[src]').evaluateAll(nodes=>nodes.map(x=>x.getAttribute('src'))),checked:await page.locator('input[name="fabric"]:checked').inputValue()}));
   }
   check(materialAfter.includes(locale==='es'?'Lino':'Linen'),locale+': fabric selection updates text');
