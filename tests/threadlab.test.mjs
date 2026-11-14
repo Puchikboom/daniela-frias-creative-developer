@@ -23,5 +23,5 @@ test('share URL round trips to sanitized configuration',()=>{
 test('empty monograms remain empty and URL is escaped',()=>{
  const c=sanitizeConfiguration({monogram:''});
  assert.equal(c.monogram,'');
- assert.equal(parseSharedConfiguration('?'+shareConfiguration(c)).monogram,'DF');
+ assert.equal(parseSharedConfiguration('?'+shareConfiguration(c)).monogram,'');
 });
