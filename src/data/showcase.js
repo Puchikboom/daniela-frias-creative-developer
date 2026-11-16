@@ -233,5 +233,21 @@ export const showcase=[
     ],
     "videos": ["/projects/collaborative-board/board-walkthrough.mp4"],
     "theme": "#dadadb"
+  },
+  {
+    "slug": "carelink",
+    "name": "Carelink",
+    "group": "Healthcare / Patient dashboard",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "REST APIs", "SQL", "Three.js"],
+    "es": "Proyecto de interfaz digital para el seguimiento de cuidados personales. Las pantallas muestran una agenda con controles y consultas médicas, acceso a citas y resultados de laboratorio, tarjetas de indicadores de salud, una visualización anatómica, una sección de radiografía torácica y paneles de medicación. El material incluye la definición visual de la marca, con tipografía Figtree y una paleta azul, negra y blanca. La implementación de servicios médicos, el origen de los datos y la posible interactividad 3D están pendientes de verificar; las cifras y las imágenes son parte de la presentación del proyecto, no diagnósticos clínicos.",
+    "en": "Digital interface project focused on personal care management. The screens present a schedule for health checks and medical appointments, access to bookings and laboratory results, health-metric cards, an anatomical visualization, a chest X-ray panel, and medication modules. The visual brand system specifies Figtree typography with blue, black and white. Medical-service integrations, data provenance and any actual 3D interaction remain unverified; the figures and imagery are project presentation content, not clinical diagnoses.",
+    "images": [
+      "/projects/carelink/01-patient-dashboard.webp",
+      "/projects/carelink/02-brand-system.webp",
+      "/projects/carelink/03-dashboard-overview.webp"
+    ],
+    "videos": [],
+    "theme": "#2fa5ff"
   }
 ];
