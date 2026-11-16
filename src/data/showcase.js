@@ -168,8 +168,8 @@ export const showcase=[
     "group": "Fitness analytics / Product dashboard",
     "confirmed": [],
     "suggested": ["React", "TypeScript", "SQL", "Recharts"],
-    "es": "Concepto visual de un panel de analítica para una plataforma de fitness. Las pantallas presentan indicadores de ingresos, suscripciones, instalaciones por plataforma, entrenamientos populares, grupos de edad y alcance geográfico. Incluye exploraciones en modo claro y oscuro. El material documenta el diseño de interfaz; la implementación, el origen de los datos y las tecnologías utilizadas aún no están verificados.",
-    "en": "Visual concept for a fitness-platform analytics dashboard. The screens feature revenue and subscription metrics, installs by platform, popular workouts, age segments, and geographical reach. Light and dark explorations are included. The materials document interface design; implementation, data sources, and the technologies actually used have not yet been verified.",
+    "es": "Proyecto de diseño y desarrollo de un panel de analítica para una plataforma de fitness. Las pantallas presentan indicadores de ingresos, suscripciones, instalaciones por plataforma, entrenamientos populares, grupos de edad y alcance geográfico. Incluye exploraciones en modo claro y oscuro. La autora confirma haber realizado el diseño y el desarrollo. Las tecnologías concretas, las fuentes de datos y el alcance funcional aún están pendientes de documentación.",
+    "en": "Design and development project for a fitness-platform analytics dashboard. The screens feature revenue and subscription metrics, installs by platform, popular workouts, age segments, and geographical reach. Light and dark explorations are included. The creator confirms having designed and developed the project. Its specific technologies, data sources and implemented feature scope have yet to be documented.",
     "images": [
       "/projects/fitonist/01-overview-light.webp",
       "/projects/fitonist/02-installs-dark.webp",
