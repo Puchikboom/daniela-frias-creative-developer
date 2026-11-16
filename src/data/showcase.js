@@ -180,5 +180,23 @@ export const showcase=[
     ],
     "videos": [],
     "theme": "#c8a4ed"
+  },
+  {
+    "slug": "lintas",
+    "name": "Lintas",
+    "group": "Fleet operations / Dispatch platform",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "Mapbox GL JS", "SQL"],
+    "es": "Proyecto de interfaz para operaciones de flotas y despacho. Los recorridos muestran un mapa de vehículos y rutas, avisos de retrasos, fichas de unidades, seguimiento de paradas y acciones para reasignar un vehículo. Las vistas incluyen una presentación del producto y una consola en dispositivos de distintos tamaños. Diseño y desarrollo atribuidos a la autora; arquitectura, servicios de mapas, datos y funcionalidades en producción pendientes de verificación.",
+    "en": "Fleet-operations and dispatch interface project. The walkthroughs show vehicle routes on a map, delay alerts, vehicle detail panels, stop tracking, and vehicle reassignment actions. The presentation spans product storytelling and a dispatch console across multiple screen sizes. Design and development are attributed to the creator; architecture, mapping services, data, and production functionality remain to be verified.",
+    "images": [
+      "/projects/lintas/01-routes.webp",
+      "/projects/lintas/02-dispatch.webp"
+    ],
+    "videos": [
+      "/projects/lintas/lintas-route-demo.mp4",
+      "/projects/lintas/lintas-dispatch-demo.mp4"
+    ],
+    "theme": "#e0e3db"
   }
 ];
