@@ -161,5 +161,93 @@ export const showcase=[
       "/projects/shuttleflow/video-01.mp4"
     ],
     "theme": "#8bb5e5"
+  },
+  {
+    "slug": "fitonist",
+    "name": "Fitonist",
+    "group": "Fitness analytics / Product dashboard",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "SQL", "Recharts"],
+    "es": "Proyecto de diseño y desarrollo de un panel de analítica para una plataforma de fitness. Las pantallas presentan indicadores de ingresos, suscripciones, instalaciones por plataforma, entrenamientos populares, grupos de edad y alcance geográfico. Incluye exploraciones en modo claro y oscuro. La autora confirma haber realizado el diseño y el desarrollo. Las tecnologías concretas, las fuentes de datos y el alcance funcional aún están pendientes de documentación.",
+    "en": "Design and development project for a fitness-platform analytics dashboard. The screens feature revenue and subscription metrics, installs by platform, popular workouts, age segments, and geographical reach. Light and dark explorations are included. The creator confirms having designed and developed the project. Its specific technologies, data sources and implemented feature scope have yet to be documented.",
+    "images": [
+      "/projects/fitonist/01-overview-light.webp",
+      "/projects/fitonist/02-installs-dark.webp",
+      "/projects/fitonist/03-dashboard-detail.webp",
+      "/projects/fitonist/04-calendar-detail.webp",
+      "/projects/fitonist/05-overview-dark.webp",
+      "/projects/fitonist/06-device-mockup.webp"
+    ],
+    "videos": [],
+    "theme": "#c8a4ed"
+  },
+  {
+    "slug": "lintas",
+    "name": "Lintas",
+    "group": "Fleet operations / Dispatch platform",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "Mapbox GL JS", "SQL"],
+    "es": "Proyecto de interfaz para operaciones de flotas y despacho. Los recorridos muestran un mapa de vehículos y rutas, avisos de retrasos, fichas de unidades, seguimiento de paradas y acciones para reasignar un vehículo. Las vistas incluyen una presentación del producto y una consola en dispositivos de distintos tamaños. Las imágenes y videos documentan la experiencia visual; el alcance exacto del desarrollo, la arquitectura, los servicios de mapas y las funcionalidades en producción están pendientes de confirmación.",
+    "en": "Fleet-operations and dispatch interface project. The walkthroughs show vehicle routes on a map, delay alerts, vehicle detail panels, stop tracking, and vehicle reassignment actions. The presentation spans product storytelling and a dispatch console across multiple screen sizes. The materials document the visual experience; the precise development scope, architecture, mapping services, and production functionality are yet to be confirmed.",
+    "images": [
+      "/projects/lintas/01-routes.webp",
+      "/projects/lintas/02-dispatch.webp"
+    ],
+    "videos": [
+      "/projects/lintas/lintas-route-demo.mp4",
+      "/projects/lintas/lintas-dispatch-demo.mp4"
+    ],
+    "theme": "#e0e3db"
+  },
+  {
+    "slug": "automatepro",
+    "name": "AutomatePro",
+    "projectNumber": 11,
+    "group": "Project management / SaaS dashboard",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "SQL", "TanStack Table"],
+    "es": "Interfaz de gestión de proyectos y tareas para equipos. Las capturas muestran espacios de trabajo, navegación lateral, tareas y subtareas jerárquicas, responsables, fechas de entrega, prioridades y barras de progreso. También se presentan controles para cambiar entre hojas de cálculo, cronograma, calendario y tablero, además de búsqueda y filtros. Las capturas documentan el diseño de las pantallas; no confirman por sí solas el funcionamiento de cada vista, la arquitectura ni el stack empleado.",
+    "en": "Team project and task management interface. The supplied screens show workspaces, sidebar navigation, hierarchical tasks and subtasks, assignees, due dates, priority labels and progress bars. The interface also presents spreadsheet, timeline, calendar and board view controls, alongside search and filtering. These images document the screen design; they do not independently verify every view's behavior, the architecture or the original technology stack.",
+    "images": [
+      "/projects/automatepro/01-overview.webp",
+      "/projects/automatepro/02-table.webp",
+      "/projects/automatepro/03-navigation.webp",
+      "/projects/automatepro/04-progress.webp",
+      "/projects/automatepro/05-detail.webp"
+    ],
+    "videos": [],
+    "theme": "#b1a4ff"
+  },
+  {
+    "slug": "collaborative-board",
+    "name": "Collaborative Board (working title)",
+    "group": "Team collaboration / Kanban workspace",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "REST APIs", "SQL"],
+    "es": "Interfaz colaborativa de gestión de tareas y proyectos con un tablero Kanban organizado por estado. El material presenta columnas de trabajo, tarjetas con responsables y porcentajes de avance, clasificación por etiquetas, navegación de espacios y accesos a vistas de lista, flujo y calendario. También aparece un módulo promocional de asistente de IA, sin evidencia de integración funcional. El nombre definitivo, el stack implementado y las funciones operativas están pendientes de confirmación.",
+    "en": "Collaborative task and project management interface built around a status-based Kanban board. The materials present workflow columns, assignee avatars, progress indicators, categorical labels, workspace navigation and entry points to list, workflow and calendar views. An AI assistant promotional module is also shown, but a working integration is not yet verified. The final project name, implemented stack and operational features remain to be confirmed.",
+    "images": [
+      "/projects/collaborative-board/01-board-overview.webp",
+      "/projects/collaborative-board/02-board-detail.webp",
+      "/projects/collaborative-board/03-brand-system.webp"
+    ],
+    "videos": ["/projects/collaborative-board/board-walkthrough.mp4"],
+    "theme": "#dadadb"
+  },
+  {
+    "slug": "carelink",
+    "name": "Carelink",
+    "group": "Healthcare / Patient dashboard",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "REST APIs", "SQL", "Three.js"],
+    "es": "Proyecto de interfaz digital para el seguimiento de cuidados personales. Las pantallas muestran una agenda con controles y consultas médicas, acceso a citas y resultados de laboratorio, tarjetas de indicadores de salud, una visualización anatómica, una sección de radiografía torácica y paneles de medicación. El material incluye la definición visual de la marca, con tipografía Figtree y una paleta azul, negra y blanca. La implementación de servicios médicos, el origen de los datos y la posible interactividad 3D están pendientes de verificar; las cifras y las imágenes son parte de la presentación del proyecto, no diagnósticos clínicos.",
+    "en": "Digital interface project focused on personal care management. The screens present a schedule for health checks and medical appointments, access to bookings and laboratory results, health-metric cards, an anatomical visualization, a chest X-ray panel, and medication modules. The visual brand system specifies Figtree typography with blue, black and white. Medical-service integrations, data provenance and any actual 3D interaction remain unverified; the figures and imagery are project presentation content, not clinical diagnoses.",
+    "images": [
+      "/projects/carelink/01-patient-dashboard.webp",
+      "/projects/carelink/02-brand-system.webp",
+      "/projects/carelink/03-dashboard-overview.webp"
+    ],
+    "videos": [],
+    "theme": "#2fa5ff"
   }
 ];
