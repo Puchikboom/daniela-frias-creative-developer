@@ -198,5 +198,24 @@ export const showcase=[
       "/projects/lintas/lintas-dispatch-demo.mp4"
     ],
     "theme": "#e0e3db"
+  },
+  {
+    "slug": "automatepro",
+    "name": "AutomatePro",
+    "projectNumber": 11,
+    "group": "Project management / SaaS dashboard",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "SQL", "TanStack Table"],
+    "es": "Interfaz de gestión de proyectos y tareas para equipos. Las capturas muestran espacios de trabajo, navegación lateral, tareas y subtareas jerárquicas, responsables, fechas de entrega, prioridades y barras de progreso. También se presentan controles para cambiar entre hojas de cálculo, cronograma, calendario y tablero, además de búsqueda y filtros. Las capturas documentan el diseño de las pantallas; no confirman por sí solas el funcionamiento de cada vista, la arquitectura ni el stack empleado.",
+    "en": "Team project and task management interface. The supplied screens show workspaces, sidebar navigation, hierarchical tasks and subtasks, assignees, due dates, priority labels and progress bars. The interface also presents spreadsheet, timeline, calendar and board view controls, alongside search and filtering. These images document the screen design; they do not independently verify every view's behavior, the architecture or the original technology stack.",
+    "images": [
+      "/projects/automatepro/01-overview.webp",
+      "/projects/automatepro/02-table.webp",
+      "/projects/automatepro/03-navigation.webp",
+      "/projects/automatepro/04-progress.webp",
+      "/projects/automatepro/05-detail.webp"
+    ],
+    "videos": [],
+    "theme": "#b1a4ff"
   }
 ];
