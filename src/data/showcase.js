@@ -217,5 +217,21 @@ export const showcase=[
     ],
     "videos": [],
     "theme": "#b1a4ff"
+  },
+  {
+    "slug": "collaborative-board",
+    "name": "Collaborative Board (working title)",
+    "group": "Team collaboration / Kanban workspace",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "REST APIs", "SQL"],
+    "es": "Interfaz colaborativa de gestión de tareas y proyectos con un tablero Kanban organizado por estado. El material presenta columnas de trabajo, tarjetas con responsables y porcentajes de avance, clasificación por etiquetas, navegación de espacios y accesos a vistas de lista, flujo y calendario. También aparece un módulo promocional de asistente de IA, sin evidencia de integración funcional. El nombre definitivo, el stack implementado y las funciones operativas están pendientes de confirmación.",
+    "en": "Collaborative task and project management interface built around a status-based Kanban board. The materials present workflow columns, assignee avatars, progress indicators, categorical labels, workspace navigation and entry points to list, workflow and calendar views. An AI assistant promotional module is also shown, but a working integration is not yet verified. The final project name, implemented stack and operational features remain to be confirmed.",
+    "images": [
+      "/projects/collaborative-board/01-board-overview.webp",
+      "/projects/collaborative-board/02-board-detail.webp",
+      "/projects/collaborative-board/03-brand-system.webp"
+    ],
+    "videos": ["/projects/collaborative-board/board-walkthrough.mp4"],
+    "theme": "#dadadb"
   }
 ];
