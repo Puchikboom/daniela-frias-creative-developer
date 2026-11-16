@@ -161,5 +161,24 @@ export const showcase=[
       "/projects/shuttleflow/video-01.mp4"
     ],
     "theme": "#8bb5e5"
+  },
+  {
+    "slug": "fitonist",
+    "name": "Fitonist",
+    "group": "Fitness analytics / Product dashboard",
+    "confirmed": [],
+    "suggested": ["React", "TypeScript", "SQL", "Recharts"],
+    "es": "Concepto visual de un panel de analítica para una plataforma de fitness. Las pantallas presentan indicadores de ingresos, suscripciones, instalaciones por plataforma, entrenamientos populares, grupos de edad y alcance geográfico. Incluye exploraciones en modo claro y oscuro. El material documenta el diseño de interfaz; la implementación, el origen de los datos y las tecnologías utilizadas aún no están verificados.",
+    "en": "Visual concept for a fitness-platform analytics dashboard. The screens feature revenue and subscription metrics, installs by platform, popular workouts, age segments, and geographical reach. Light and dark explorations are included. The materials document interface design; implementation, data sources, and the technologies actually used have not yet been verified.",
+    "images": [
+      "/projects/fitonist/01-overview-light.webp",
+      "/projects/fitonist/02-installs-dark.webp",
+      "/projects/fitonist/03-dashboard-detail.webp",
+      "/projects/fitonist/04-calendar-detail.webp",
+      "/projects/fitonist/05-overview-dark.webp",
+      "/projects/fitonist/06-device-mockup.webp"
+    ],
+    "videos": [],
+    "theme": "#c8a4ed"
   }
 ];
